@@ -7,13 +7,13 @@ import Image from "next/image";
 export const Navbar = () => {
   return (<header className=" bg-[#d3d3ff] sticky top-0 backdrop-blur-sm z-20">
 
-    {/* <div className="flex justify-center items-center py-3 bg-black text-white text-sm gap-3">
-      <p className="text-white/60 hidden md:block">Streamline your workflow and boost your productivity</p>
+    <div className="flex justify-center items-center py-3 bg-[#4B0082] text-white text-sm gap-3">
+      <p className="text-white/60 hidden md:block">Streamline your studies and boost your grades</p>
         <div className="inline-flex gap-1 items-center">
-        <p>Get started for free</p>
+        <p>Find a tutor now</p>
         <ArrowRight className='h-4 w-4 inline-flex justify-center items-center'/>
         </div>
-      </div> */}
+      </div>
       <div className="py-5">
         <div className="container">
     
