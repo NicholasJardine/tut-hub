@@ -124,4 +124,38 @@
 }
 
 
+.glow-effect {
+    box-shadow: 0 0 20px #4B0082; /* Initial glow */
+    animation: glowPulse 3s infinite alternate;
+  }
+  
+  @keyframes glowPulse {
+    from {
+      box-shadow: 0 0 20px rgba(255, 165, 0, 0.6); /* Soft glow */
+    }
+    to {
+      box-shadow: 0 0 40px rgba(255, 165, 0, 1); /* Stronger glow */
+    }
+  }
+
+  .screen-glow {
+    position: absolute;
+    top: 45%; /* Adjust these values to fit the screen position */
+    left: 38%; /* Adjust these values to fit the screen position */
+    width: 180px; /* Adjust the width to match the screen's width */
+    height: 100px; /* Adjust the height to match the screen's height */
+    border-radius: 10px; /* Optional, for rounded screen corners */
+    box-shadow: 0 0 20px #4B0082; /* Blue glowing effect */
+    animation: glowPulse 10s infinite alternate;
+    pointer-events: none; /* Prevent interaction */
+  }
+  
+  @keyframes glowPulse {
+    from {
+      box-shadow: 0 0 20px #D3D3FF; /* Soft glow */
+    }
+    to {
+      box-shadow: 0 0 40px #4B0082; /* Stronger glow */
+    }
+  }
   
