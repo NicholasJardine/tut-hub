@@ -275,7 +275,7 @@ export const Hero = () => {
       <div className="container">
         <div className="md:flex items-center">
           <div className="md:w-[478px] md:mr-16 relative">
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tighter bg-gradient-to-b from-[#4B0082] to-[#4B0082] text-transparent bg-clip-text mt-5">
+            <h1 className="leading-[1.2] text-5xl md:text-6xl font-bold tracking-tighter bg-gradient-to-b from-[#4B0082] to-[#4B0082] text-transparent bg-clip-text mt-5 pb-4">
               Online tutoring at your fingertips
             </h1>
             <p className="text-xl text-[#4A4A4A] tracking-tight mt-6">
