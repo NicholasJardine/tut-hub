@@ -10,11 +10,9 @@ export default function Home() {
   return <>
   <Navbar/>
   <Hero/>
-  <LogoTicker/>
   <Offerings/>
 
   <ContactPage/>
-  <StudentSlider/>
   {/* <Reviews/> */}
   <Footer/>
   </>;

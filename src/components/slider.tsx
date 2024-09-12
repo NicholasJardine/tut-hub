@@ -33,7 +33,7 @@ const StudentSlider = () => {
   };
 
   return (
-    <div className="slider-container" style={{ position: "relative", width: "100%", height: "316px", boxShadow: "0 0 20px #4B0082" }}>
+    <div className="slider-container" style={{ position: "relative", width: "100%", height: "300px", boxShadow: "0 0 20px #4B0082" }}>
       <div className="slider" style={{ position: "relative", width: "100%", height: "100%" }}>
         <AnimatePresence>
           <motion.div

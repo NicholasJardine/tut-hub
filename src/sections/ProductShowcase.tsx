@@ -18,10 +18,11 @@
 import productImage from '@/assets/product-image.png'
 import pyramidImage from '@/assets/pyramid.png'
 import tubeImage from '@/assets/tube.png'
-
 import Image from 'next/image';
 import {motion,useScroll, useTransform} from 'framer-motion'
 import { useRef } from 'react';
+import { LogoTicker } from './LogoTicker'
+
 export const Offerings = () => {
   const sectionRef = useRef(null)
   const {scrollYProgress}=useScroll({
@@ -31,12 +32,13 @@ export const Offerings = () => {
 
   const translateY = useTransform(scrollYProgress,[0,1], [150,-150])
   return <section ref={sectionRef} className=' bg-gradient-to-b from-[#ffffff] to [#D2DCFF] py-8 overflow-x-clip pattern'>
+    <><LogoTicker/></>
     <div className="container">
       <div className="section-heading">
 
       
       <div className="flex justify-center">
-      <p className='tag'>Boost your productivity</p>
+      <p className='tag-2'>Boost your productivity</p>
       </div>
     <h2 className='section-title mt-5'>What we offer</h2>
     <p className='section-description mt-5'>
@@ -53,6 +55,15 @@ export const Offerings = () => {
 
     </div> */}
     </div>
+
+    <div className="flex justify-center gap-4 mt-8">
+    <button className="btn btn-primary">
+      University Tutors
+    </button>
+    <button className="btn btn-text">
+      High School Tutors
+    </button>
+  </div>
 
   </section>;
 };
