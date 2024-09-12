@@ -311,7 +311,7 @@ export const Hero = () => {
           </div>
 
           {/* Image slider section */}
-          <div className="relative mt-20 md:mt-0 md:h-[424px] md:flex-1">
+          <div className="relative mt-20 md:mt-0 md:h-[424px] md:flex-1 lg:mt-16">
             <motion.div
               style={{ translateY }} // Apply the translateY effect here
             >
