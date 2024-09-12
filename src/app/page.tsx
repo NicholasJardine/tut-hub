@@ -5,6 +5,7 @@ import Reviews from "@/components/Reviews/Reviews"
 import ContactPage from "@/components/contact/Contact"
 import { Footer } from "@/sections/Footer"
 import { Offerings } from "@/sections/ProductShowcase";
+import StudentSlider from "@/components/slider";
 export default function Home() {
   return <>
   <Navbar/>
@@ -13,6 +14,7 @@ export default function Home() {
   <Offerings/>
 
   <ContactPage/>
+  <StudentSlider/>
   {/* <Reviews/> */}
   <Footer/>
   </>;

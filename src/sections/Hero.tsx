@@ -240,15 +240,12 @@
 
 
 "use client";
-import ArrowIcon from '@/assets/arrow-right.svg';
-import tutoringImage from '@/assets/tutoring.jpg';
-import starImage from '@/assets/stars-5.png';
-import starImage2 from '@/assets/stars7.png';
-
-import bubbleImage from '@/assets/bubbles.png';
-import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import ArrowIcon from "@/assets/arrow-right.svg";
+import starImage from "@/assets/stars-5.png";
+import starImage2 from "@/assets/stars7.png";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import StudentSlider from "@/components/slider";  // Import the slider
 
 export const Hero = () => {
   const heroRef = useRef(null);
@@ -266,7 +263,7 @@ export const Hero = () => {
     transition: {
       duration: 7, // Speed of animation
       ease: "easeInOut",
-      repeat: 0, // Loop the animation // Corrected to use literal type
+      repeat: 0, // Keep the animation looping
     },
   };
 
@@ -278,7 +275,7 @@ export const Hero = () => {
       <div className="container">
         <div className="md:flex items-center">
           <div className="md:w-[478px] md:mr-16 relative">
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tighter bg-gradient-to-b from-[#4B0082] to-[#4B0082] text-transparent bg-clip-text mt-6">
+            <h1 className="text-5xl md:text-6xl font-bold tracking-tighter bg-gradient-to-b from-[#4B0082] to-[#4B0082] text-transparent bg-clip-text mt-5">
               Online tutoring at your fingertips
             </h1>
             <p className="text-xl text-[#4A4A4A] tracking-tight mt-6">
@@ -313,23 +310,13 @@ export const Hero = () => {
             />
           </div>
 
-          {/* Image section */}
+          {/* Image slider section */}
           <div className="relative mt-20 md:mt-0 md:h-[424px] md:flex-1">
-            <motion.img
-              src={tutoringImage.src}
-              alt="tutoring"
-              className="md:absolute md:max-h-[316px] md:h-full md:w-auto md:max-w-none md:-left-6 lg:left-0 rounded-lg shadow-lg mt-32 md:mt-10 md:ml-10 glow-effect"
-              style={{ translateY }}
-            />
-
-            {/* Bubbles for decoration */}
-            {/* <motion.img
-              src={bubbleImage.src}
-              alt="bubbles"
-              width={120}
-              className="hidden lg:block absolute top-[524px] left-[448px] rotate-[30deg]"
-              style={{ translateY, rotate: 30 }}
-            /> */}
+            <motion.div
+              style={{ translateY }} // Apply the translateY effect here
+            >
+              <StudentSlider /> {/* This will replace the current static image */}
+            </motion.div>
           </div>
         </div>
       </div>

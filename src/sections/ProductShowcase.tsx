@@ -30,7 +30,7 @@ export const Offerings = () => {
   });
 
   const translateY = useTransform(scrollYProgress,[0,1], [150,-150])
-  return <section ref={sectionRef} className=' bg-gradient-to-b from-[#ffffff] to [#D2DCFF] py-8 overflow-x-clip'>
+  return <section ref={sectionRef} className=' bg-gradient-to-b from-[#ffffff] to [#D2DCFF] py-8 overflow-x-clip pattern'>
     <div className="container">
       <div className="section-heading">
 
