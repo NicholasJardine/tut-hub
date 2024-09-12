@@ -6,11 +6,13 @@ import ContactPage from "@/components/contact/Contact"
 import { Footer } from "@/sections/Footer"
 import { Offerings } from "@/sections/ProductShowcase";
 import StudentSlider from "@/components/slider";
+import About from "@/sections/About";
 export default function Home() {
   return <>
   <Navbar/>
   <Hero/>
   <Offerings/>
+  <About/>
 
   <ContactPage/>
   {/* <Reviews/> */}
