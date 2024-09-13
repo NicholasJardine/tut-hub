@@ -3,6 +3,8 @@ import Logo from '@/assets/tut.png'
 import MenuIcon from '@/assets/menu.svg'
 
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUniversity, faGraduationCap, faSchool, faChalkboardTeacher, faChartLine, faCalendarAlt, faGlobe, faLaptopHouse, faLock, faBookOpen, faUserGraduate, faCalendarCheck, faLightbulb, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 export const Navbar = () => {
   return (<header className=" bg-[#d3d3ff] sticky top-0 backdrop-blur-sm z-20">
@@ -25,7 +27,8 @@ export const Navbar = () => {
           <a href="#">Testimonials</a>
           {/* <a href="#">Updates</a>
           <a href="#">About</a> */}
-          <button className="bg-[#4B0082] text-white px-4 py-2 rounded-lg font-medium inline-flex items-center justify-center tracking-tight">Find a tutor</button>
+          <button className="bg-[#4B0082] text-white px-4 py-2 rounded-[20px] font-medium inline-flex items-center justify-center tracking-tight"> Find a tutor  </button>
+          {/* <button className="bg-[#4B0082] text-white px-4 py-2 rounded-[20px] font-medium inline-flex items-center justify-center tracking-tight"><FontAwesomeIcon className="mr-2 mt-[-2px]" icon={faBookOpen} height={16}/> Find a tutor  </button> */}
     
     
         </nav>

@@ -29,7 +29,7 @@
     }
 
     .tag-3{
-        @apply text-sm inline-flex border border-[#4B0082] px-3 py-1 rounded-lg tracking-tight text-center
+        @apply text-sm inline-flex border border-[#4B0082] px-3 py-1 rounded-lg tracking-tight
     }
 
     .section-title{
@@ -244,6 +244,10 @@ button, a {
     height: auto;
     border-radius: 10px;
   }
+
+
+
+  
   
 
 

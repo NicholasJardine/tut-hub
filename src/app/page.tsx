@@ -7,8 +7,13 @@ import { Footer } from "@/sections/Footer"
 import { Offerings } from "@/sections/ProductShowcase";
 import StudentSlider from "@/components/slider";
 import About from "@/sections/About";
+// import { SignUp } from "./sign_up";
+import Head from "next/head";
 export default function Home() {
   return <>
+          <Head>
+        <link rel="stylesheet" href="/globals.css" />
+        </Head>
   <Navbar/>
   <Hero/>
   <Offerings/>
@@ -17,5 +22,7 @@ export default function Home() {
   <ContactPage/>
   {/* <Reviews/> */}
   <Footer/>
+  {/* <SignUp/> */}
+
   </>;
 }

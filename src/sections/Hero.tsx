@@ -248,8 +248,16 @@ import { useRef } from "react";
 import StudentSlider from "@/components/slider";  // Import the slider
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUniversity, faGraduationCap, faSchool, faChalkboardTeacher, faChartLine, faCalendarAlt, faGlobe, faLaptopHouse, faLock, faBookOpen, faUserGraduate, faCalendarCheck, faLightbulb } from '@fortawesome/free-solid-svg-icons';
+// import { useRouter } from 'next/router';
+import Link from "next/link";
 
 export const Hero = () => {
+  // const router = useRouter();
+
+  // const handleBecomeTutor = () => {
+  //   router.push('/signup'); // Navigate to the sign-up screen
+  // };
+  
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -284,8 +292,9 @@ export const Hero = () => {
               Unlock your potential with our comprehensive tutoring platform,
               designed to help you achieve academic success.
             </p>
-            <div className="flex gap-1 items-center mt-[30px]">
-              <button className="btn btn-primary font-bold rounded-[20px] shadow-lg hover:shadow-xl space-x-2"> <FontAwesomeIcon className="mr-2 mt-[-2px]" icon={faUserGraduate} height={16}/>Become a tutor</button>
+            <div className="flex gap-2 items-center mt-[30px]">
+          
+                      <Link href={'/signup'} className="btn btn-primary font-bold rounded-[20px] shadow-lg hover:shadow-xl space-x-2"> <FontAwesomeIcon className="mr-2 mt-[-2px]" icon={faUserGraduate} height={16}/>Become a tutor</Link>
               <button className="btn btn-text rounded-[20px] gap-1 shadow-lg hover:shadow-xl">
                 <span>Learn More</span> <ArrowIcon className="h-5 w-5" />
               </button>
