@@ -283,8 +283,8 @@ export const Hero = () => {
               designed to help you achieve academic success.
             </p>
             <div className="flex gap-1 items-center mt-[30px]">
-              <button className="btn btn-primary">Get for free</button>
-              <button className="btn btn-text gap-1">
+              <button className="btn btn-primary font-bold  rounded-[20px] shadow-lg hover:shadow-xl">Become a tutor</button>
+              <button className="btn btn-text rounded-[20px] gap-1 shadow-lg hover:shadow-xl">
                 <span>Learn More</span> <ArrowIcon className="h-5 w-5" />
               </button>
             </div>

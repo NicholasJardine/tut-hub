@@ -8,11 +8,11 @@
     }
 
     .btn-primary{
-        @apply bg-[#fa8340] text-indigo-900 
+        @apply bg-[#fa8340] text-indigo-900 font-bold  rounded-[20px] shadow-lg hover:shadow-xl
     }
 
     .btn-text{
-        @apply border border-[#fa8340] text-[#4B0082] px-4 py-2 rounded-md hover:bg-[#FFA500] hover:text-white transition-all
+        @apply border border-[#fa8340] text-[#4B0082] px-4 py-2 rounded-md hover:bg-[#FFA500] hover:text-white transition-all font-bold  rounded-[20px] shadow-lg hover:shadow-xl
     }
 
     .logo-ticker-image{
@@ -28,6 +28,9 @@
         @apply text-sm inline-flex border border-[#4B0082] px-3 py-1 rounded-lg tracking-tight
     }
 
+    .tag-3{
+        @apply text-sm inline-flex border border-[#4B0082] px-3 py-1 rounded-lg tracking-tight text-center
+    }
 
     .section-title{
         @apply text-center text-3xl md:text-[54px] md:leading-[60px] font-bold tracking-tighter bg-gradient-to-b from-black to-[#001E80] text-transparent bg-clip-text
@@ -273,4 +276,10 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   .animated-stars {
     animation: float 3s ease-in-out infinite;
   }
-  
+
+
+
+
+input, textarea {
+    @apply rounded-lg shadow-md focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-600;
+}

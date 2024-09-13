@@ -35,7 +35,9 @@ const ContactPage = () => {
   };
 
   return (
-    <section className='py-1 pattern overflow-x-clip'> {/* Reduced padding */}
+    <section className='py-1 pattern overflow-x-clip'>
+          <h1 className='section-title mt-8 text-7xl text-[#4B0082]'>Want to chat?</h1>
+          {/* Reduced padding */}
   <div className="contact bg-[#d3d3ff] pattern">
     <div className="mx-auto max-w-[90%] flex flex-col md:flex-row items-stretch justify-between gap-10">
       <div className="con-col basis-[48%] text-[#676767]">
@@ -63,7 +65,7 @@ const ContactPage = () => {
       </div>
 
       <div className="con-col basis-[48%]">
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className='px-10'>
           <label className="block mb-2 text-[#000F38]">Your Name</label>
           <input
             type="text"
@@ -85,12 +87,12 @@ const ContactPage = () => {
           <label className="block mb-2 text-[#000F38]">Write your message</label>
           <textarea
             name="message"
-            rows="6"
+            rows="4"
             className="block w-full bg-gray-100 p-4 mb-4 mt-1 border-0 outline-none resize-none"
             required
           ></textarea>
 
-          <button type="submit" className="btn btn-primary mt-4">
+          <button type="submit" className="btn btn-primary mt-4 mb-4">
             Send email
           </button>
         </form>

@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import clsx from "clsx";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css"; // Import the CSS
+config.autoAddCss = false; // Prevent Font Awesome from auto-injecting the CSS
+
 
 const dmSans = DM_Sans({ subsets: ["latin"] });
 

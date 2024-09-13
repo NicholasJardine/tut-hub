@@ -40,7 +40,7 @@ export const Offerings = () => {
       <div className="flex justify-center">
       <p className='tag-2'>Boost your productivity</p>
       </div>
-    <h2 className='section-title mt-5'>What we offer</h2>
+    <h2 className='section-title mt-5 text-[#4B0082]'>What we offer</h2>
     <p className='section-description mt-5'>
     Tut-hub provides comprehensive tutoring services at both university and high school levels, with flexible options for one-on-one or group sessions, ensuring tailored support for every student's unique needs.</p>
     </div>
