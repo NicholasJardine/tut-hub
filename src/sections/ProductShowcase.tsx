@@ -22,6 +22,9 @@ import Image from 'next/image';
 import {motion,useScroll, useTransform} from 'framer-motion'
 import { useRef } from 'react';
 import { LogoTicker } from './LogoTicker'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUniversity, faGraduationCap, faSchool, faChalkboardTeacher, faChartLine, faCalendarAlt, faGlobe, faLaptopHouse, faLock, faBookOpen, faUserGraduate, faCalendarCheck, faLightbulb } from '@fortawesome/free-solid-svg-icons';
+
 
 export const Offerings = () => {
   const sectionRef = useRef(null)
@@ -58,9 +61,12 @@ export const Offerings = () => {
 
     <div className="flex justify-center gap-4 mt-8">
     <button className="btn btn-primary">
+    <FontAwesomeIcon className="mr-2 mt-[-2px]" icon={faUniversity} height={16}/>
       University Tutors
+      
     </button>
     <button className="btn btn-text">
+    <FontAwesomeIcon className="mr-2 mt-[-2px]" icon={faGraduationCap} height={16}/>
       High School Tutors
     </button>
   </div>

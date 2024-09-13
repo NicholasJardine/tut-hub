@@ -7,6 +7,8 @@ import mail_icon from '@/assets/mail-icon.png'
 import phone_icon from '@/assets/phone-icon.png'
 import location_icon from '@/assets/location-icon.png'
 import Image from 'next/image'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons"
 
 const ContactPage = () => {
   const [result, setResult] = React.useState("");
@@ -93,6 +95,7 @@ const ContactPage = () => {
           ></textarea>
 
           <button type="submit" className="btn btn-primary mt-4 mb-4">
+            <FontAwesomeIcon icon={faPaperPlane} className="mr-2 mt-[-2px]"/>
             Send email
           </button>
         </form>
