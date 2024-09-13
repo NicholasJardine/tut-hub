@@ -6,11 +6,13 @@
     box-sizing: border-box;
 }
 
-:root {
+ :root {
     --linear-grad: linear-gradient(to right, #141E30, #243B55);
     --grad-clr1: #141E30;
     --grad-clr2: #243B55;
 }
+
+
 
 body {
     height: 100vh;
@@ -50,7 +52,7 @@ footer a {
     position: relative;
     width: 850px;
     height: 500px;
-    background-color: #FFF;
+    background-color: #D3D3FF;
     box-shadow: 25px 30px 55px #5557;
     border-radius: 13px;
     overflow: hidden;
@@ -150,7 +152,7 @@ footer a {
   button {
     border-radius: 20px;
     border: 1px solid var(--grad-clr1);
-    background: var(--grad-clr2);
+    background: #4B0082;
     color: #FFF;
     font-size: 12px;
     font-weight: bold;
@@ -194,7 +196,7 @@ footer a {
   
   .overlay {
     position: relative;
-    background: var(--linear-grad);
+    background: #4B0082;
     color: #FFF;
     left: -150%;
     height: 100%;
@@ -219,4 +221,14 @@ footer a {
     /* the rest of the styles are not visible, but you can add the missing ones */
   }
   
-  
+.btn{
+    @apply px-4 py-2 rounded-lg font-medium inline-flex items-center justify-center tracking-tight
+}
+
+.btn-primary{
+    @apply bg-[#fa8340] text-indigo-900 font-bold  rounded-[20px] shadow-lg hover:shadow-xl
+}
+
+.btn-text{
+    @apply border border-[#fa8340] text-[#4B0082] px-4 py-2 rounded-md hover:bg-[#FFA500] hover:text-white transition-all font-bold  rounded-[20px] shadow-lg hover:shadow-xl
+}
