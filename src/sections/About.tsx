@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const About = () => {
   return (
-    <section className="py-16"> {/* Add vertical padding to the section */}
+    <section className="py-16 bg-[#D3D3FF]"> {/* Add vertical padding to the section */}
       <div className="container mx-auto px-8 lg:px-20"> {/* Increase horizontal padding */}
         <div className="my-row flex flex-wrap items-center gap-16">
           <div className="flex flex-col flex-1 text-left items-start space-y-6"> {/* Added space between elements */}

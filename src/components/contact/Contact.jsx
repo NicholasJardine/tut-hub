@@ -35,71 +35,71 @@ const ContactPage = () => {
   };
 
   return (
-    <section className='pt-8 pb-20 md:pt-5 md:pb-10 bg-[#d3d3ff] overflow-x-clip'>
-<div className="contact bg-[#d3d3ff] py-20">
-      <div className="mx-auto max-w-[90%] flex flex-col md:flex-row items-stretch justify-between gap-10">
-        <div className="con-col basis-[48%] text-[#676767]">
-          <h3 className="font-medium text-[#000F38] text-[25px] flex items-center mb-5">
-            Reach us here <Image src={message_icon.src} width={120} height={120}className="ml-2 w-[35px]" alt="Message Icon" />
-          </h3>
-          <p className="max-w-[450px] leading-[1.3] mb-4 mt-1">
-            You're welcome to contact us using the details provided below. We're here to assist with any inquiries or support you may need. Feel free to reach out, and we'll respond as soon as possible!
-          </p>
-          <ul>
-            <li className="flex items-center my-5">
-              <Image src={mail_icon.src} width={120} height={120} className="mr-2 w-[25px]" alt="Mail Icon" />
-              support@rsatech.com
-            </li>
-            <li className="flex items-center my-5">
-              <Image src={phone_icon.src} width={120} height={120} className="mr-2 w-[25px]" alt="Phone Icon" />
-              +2766443839
-            </li>
-            <li className="flex items-center my-5">
-              <Image src={location_icon.src} width={120} height={120} className="mr-2 w-[25px]" alt="Location Icon" />
-              1234 Rainbow Street, Greenfields, <br />
-              Johannesburg, 2000, South Africa
-            </li>
-          </ul>
-        </div>
+    <section className='py-1 pattern overflow-x-clip'> {/* Reduced padding */}
+  <div className="contact bg-[#d3d3ff] pattern">
+    <div className="mx-auto max-w-[90%] flex flex-col md:flex-row items-stretch justify-between gap-10">
+      <div className="con-col basis-[48%] text-[#676767]">
+        <h3 className="font-medium text-[#000F38] text-[25px] flex items-center mb-5">
+          Reach us here <Image src={message_icon.src} width={120} height={120} className="ml-2 w-[35px]" alt="Message Icon" />
+        </h3>
+        <p className="max-w-[450px] leading-[1.3] mb-4 mt-1">
+          You're welcome to contact us using the details provided below. We're here to assist with any inquiries or support you may need. Feel free to reach out, and we'll respond as soon as possible!
+        </p>
+        <ul>
+          <li className="flex items-center my-5">
+            <Image src={mail_icon.src} width={120} height={120} className="mr-2 w-[25px]" alt="Mail Icon" />
+            support@rsatech.com
+          </li>
+          <li className="flex items-center my-5">
+            <Image src={phone_icon.src} width={120} height={120} className="mr-2 w-[25px]" alt="Phone Icon" />
+            +2766443839
+          </li>
+          <li className="flex items-center my-5">
+            <Image src={location_icon.src} width={120} height={120} className="mr-2 w-[25px]" alt="Location Icon" />
+            1234 Rainbow Street, Greenfields, <br />
+            Johannesburg, 2000, South Africa
+          </li>
+        </ul>
+      </div>
 
-        <div className="con-col basis-[48%]">
-          <form onSubmit={onSubmit}>
-            <label className="block mb-2 text-[#000F38]">Your Name</label>
-            <input
-              type="text"
-              name="name"
-              placeholder="Enter your name"
-              className="block w-full bg-gray-100 p-4 mb-4 mt-1 border-0 outline-none resize-none"
-              required
-            />
+      <div className="con-col basis-[48%]">
+        <form onSubmit={onSubmit}>
+          <label className="block mb-2 text-[#000F38]">Your Name</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter your name"
+            className="block w-full bg-gray-100 p-4 mb-4 mt-1 border-0 outline-none resize-none"
+            required
+          />
 
-            <label className="block mb-2 text-[#000F38]">Phone Number</label>
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Enter mobile number"
-              className="block w-full bg-gray-100 p-4 mb-4 mt-1 border-0 outline-none resize-none"
-              required
-            />
+          <label className="block mb-2 text-[#000F38]">Phone Number</label>
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Enter mobile number"
+            className="block w-full bg-gray-100 p-4 mb-4 mt-1 border-0 outline-none resize-none"
+            required
+          />
 
-            <label className="block mb-2 text-[#000F38]">Write your message</label>
-            <textarea
-              name="message"
-              rows="6"
-              className="block w-full bg-gray-100 p-4 mb-4 mt-1 border-0 outline-none resize-none"
-              required
-            ></textarea>
+          <label className="block mb-2 text-[#000F38]">Write your message</label>
+          <textarea
+            name="message"
+            rows="6"
+            className="block w-full bg-gray-100 p-4 mb-4 mt-1 border-0 outline-none resize-none"
+            required
+          ></textarea>
 
-            <button type="submit" className="btn btn-primary mt-4">
-              Send email
-            </button>
-          </form>
-          <span>{result} </span>
-        </div>
+          <button type="submit" className="btn btn-primary mt-4">
+            Send email
+          </button>
+        </form>
+        <span>{result} </span>
       </div>
     </div>
-    </section>
-    
+  </div>
+</section>
+
   );
 };
 

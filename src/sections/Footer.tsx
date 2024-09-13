@@ -9,7 +9,7 @@ import SocialYoutube from '@/assets/social-youtube.svg'
 import Image from 'next/image';
 export const Footer = () => {
   return (
-    <footer className='bg-[#4B0082] text-[#BCBCBC] text-sm py-10 text-center'>
+    <footer className='bg-[#4B0082] text-[#BCBCBC] text-sm py-10 lg:py-5 text-center'>
       <div className="container">
         <nav className='flex flex-col md:flex-row md:justify-center gap-6 mt-6'>
           <a href="#">About</a>
@@ -20,12 +20,12 @@ export const Footer = () => {
           <a href="#">Careers</a>
         </nav>
         <div className='flex justify-center gap-6 mt-6'>
-        <Image className="relative" src={logo} alt='logo' height={40}/>
+        <Image className="relative rounded-[12px]" src={logo} alt='logo' height={26}/>
         <SocialX/>
         <SocialInsta/>
         <SocialLinkedIn/>
         <SocialPin/>
-        <SocialYoutube/>
+        {/* <SocialYoutube/> */}
         </div>
         <p className='mt-6'>&copy; 2024 MediLink, Inc. All rights reserved</p>
       </div>
