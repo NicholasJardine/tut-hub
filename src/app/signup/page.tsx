@@ -163,7 +163,7 @@ const SignUp = () => {
             </div>
             <div className="overlay-panel overlay-right">
               <h1>Hello, Friend!</h1>
-              <p>Enter your personal details and start your journey with us</p>
+              <p className='text-white'>Enter your personal details and start your journey with us</p>
               <button>Sign Up</button>
             </div>
           </div>

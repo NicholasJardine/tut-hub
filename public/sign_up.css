@@ -204,6 +204,29 @@ footer a {
     transition: transform 0.6s ease-in-out;
   }
 
+  .overlay-panel{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0px 40px;
+    text-align: center;
+    height: 100%;
+    transition:0.6s ease-in-out;
+    width: 340px;
+  }
+
+.overlay-left{
+  right:60%;
+  transform: translateX(12%);
+}
+
+.overlay-right{
+  right:0;
+  transform: translateX(0%);
+}
+
   .overlay-panel h1 {
     color: #FFF;
   }
@@ -218,6 +241,7 @@ footer a {
   
   .overlay-panel button {
     border: none;
+    background-color: transparent;
     /* the rest of the styles are not visible, but you can add the missing ones */
   }
   
