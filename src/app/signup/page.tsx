@@ -89,7 +89,7 @@
 import { useEffect } from 'react';
 import { Footer } from "@/sections/Footer";
 import { Navbar } from "@/sections/Navbar";
-
+import Script from 'next/script';
 const SignUp = () => {
   useEffect(() => {
     // Dynamically load the sign_up.css when the SignUp component mounts
@@ -163,13 +163,25 @@ const SignUp = () => {
             </div>
             <div className="overlay-panel overlay-right">
               <h1>Hello, Friend!</h1>
-              <p className='text-white'>Enter your personal details and start your journey with us</p>
+              <p>Enter your personal details and start your journey with us</p>
               <button>Sign Up</button>
             </div>
           </div>
           <button id="overlayBtn"></button>
         </div>
       </div>
+      <Script id="toggle-script" strategy="lazyOnload">
+        {`
+          const container = document.getElementById('custom-container');
+          const overlayBtn = document.getElementById('overlayBtn');
+          
+          if (overlayBtn) {
+            overlayBtn.addEventListener('click', () => {
+              container.classList.toggle('right-panel-active');
+            });
+          }
+        `}
+      </Script>
     </>
   );
 };
