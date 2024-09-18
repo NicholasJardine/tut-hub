@@ -157,9 +157,9 @@ const SignUp = () => {
         <div className="overlay-custom-container" id="overlayCon">
           <div className="overlay">
             <div className="overlay-panel overlay-left">
-              <h1>Welcome Back!</h1>
+              <h1 className='whitespace-nowrap'>Welcome Back!</h1>
               <p>To keep connected with us please login with your personal info</p>
-              <button className='btn btn-primary'>Sign In</button>
+              <button>Sign In</button>
             </div>
             <div className="overlay-panel overlay-right">
               <h1>Hello, Friend!</h1>
