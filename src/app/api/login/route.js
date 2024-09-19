@@ -1,5 +1,7 @@
 import bcrypt from 'bcryptjs';
 import { Pool } from 'pg';
+import jwt from 'jsonwebtoken';  // Import the jsonwebtoken package
+import { headers } from 'next/headers';
 
 const pool = new Pool({
     user: 'postgres', // PostgreSQL username
@@ -9,6 +11,7 @@ const pool = new Pool({
     port: 5432,            // PostgreSQL port (default is 5432)
 });
 
+const JWT_SECRET = process.env.JWT_SECRET;
 export async function POST(req){
     try{
     const body = await req.json();
@@ -21,7 +24,10 @@ export async function POST(req){
         const isMAtch = await bcrypt.compare(user_password, user.user_password);
 
         if (isMAtch){
-            return new Response(JSON.stringify({message: 'Login successful!'}), {status:200});
+            const token = jwt.sign({userId: user.id, email: user.email}, JWT_SECRET, { expiresIn: '1h'});
+            return new Response(JSON.stringify({message: 'Login successful!', token}), {status:200, headers: {
+                'Set-Cookie': `token=${token}; HttpOnly; Secure; Path=/; Max-Age=3600; SameSite=Strict`,
+            }},);
         } else {
             return new Response(JSON.stringify({ message: 'Invalid credentials' }), { status: 401 });     
         }

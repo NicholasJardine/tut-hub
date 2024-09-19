@@ -34,10 +34,12 @@ const SignUp = () => {
           email: formData.email,
           user_password: formData.user_password
         }),
+        credentials: 'include'
       });
       const result = await response.json();
 
       if(response.ok){
+        // localStorage.setItem('token', result.token);
         setMessage('Login successful');
       } else {
         setMessage(result.message || 'Login Failed');
