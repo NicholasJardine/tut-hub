@@ -22,6 +22,33 @@ const SignUp = () => {
     console.log(formData); 
   };
 
+  const handleLogin = async(e: React.FormEvent<HTMLFormElement>) =>{
+    e.preventDefault();
+    try{
+      const response = await fetch('/api/login',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          user_password: formData.user_password
+        }),
+      });
+      const result = await response.json();
+
+      if(response.ok){
+        setMessage('Login successful');
+      } else {
+        setMessage(result.message || 'Login Failed');
+      }
+    } catch(error) {
+      console.error('error logging in:', error);
+      setMessage('An error occurred');
+    }
+  };
+
+
   const handleSubmit = async( e: React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
 
@@ -96,12 +123,13 @@ const SignUp = () => {
               <label></label>
             </div>
             <button type='submit'>Sign Up</button>
+            {message && <p>{message}</p>}
+
           </form>
-          {message && <p>{message}</p>}
         </div>
 
         <div className="form-custom-container sign-in-custom-container">
-          <form action="#">
+          <form onSubmit={handleLogin}>
             <h1>Sign in</h1>
             <div className="social-custom-container">
               <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
@@ -110,15 +138,23 @@ const SignUp = () => {
             </div>
             <span>or use your account</span>
             <div className="infield">
-              <input type="email" placeholder="Email" name="email" />
+              <input type="email" placeholder="Email" name="email" 
+              value={formData.email}
+              onChange={handleChange}
+              required/>
               <label></label>
             </div>
             <div className="infield">
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Password" 
+              name='user_password'
+              value={formData.user_password}
+              onChange={handleChange}
+              required/>
               <label></label>
             </div>
             <a href="#" className="forgot">Forgot your password?</a>
-            <button>Sign In</button>
+            <button type='submit' >Sign In</button>
+            {message && <p>{message}</p>}
           </form>
         </div>
 
