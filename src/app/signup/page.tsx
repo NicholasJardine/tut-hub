@@ -1,11 +1,18 @@
-"use client"
+"use client";
 import { useEffect } from 'react';
 import { useState } from 'react'; 
 import Script from 'next/script';
+// import { useRouter } from 'next/router';  // Import the useRouter hook from Next.js
+// import { useRouter } from 'next/router';
 
 
+export default function SignUp () {
 
-const SignUp = () => {
+  // const router = useRouter();
+
+  // useEffect(() => {
+  //   console.log('Router object:', router);
+  // }, [router]);
 
   const [formData, setFormData] = useState({
     full_name: '',
@@ -13,6 +20,7 @@ const SignUp = () => {
     user_password: '',
   });
   
+
   const [message, setMessage] = useState('');
   const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -24,6 +32,7 @@ const SignUp = () => {
 
   const handleLogin = async(e: React.FormEvent<HTMLFormElement>) =>{
     e.preventDefault();
+
     try{
       const response = await fetch('/api/login',{
         method: 'POST',
@@ -41,6 +50,8 @@ const SignUp = () => {
       if(response.ok){
         // localStorage.setItem('token', result.token);
         setMessage('Login successful');
+        // router.push('/welcome');
+        window.location.href = '/welcome';
       } else {
         setMessage(result.message || 'Login Failed');
       }
@@ -61,14 +72,16 @@ const SignUp = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
+        credentials:'include',
       });
 
       const result = await response.json();
 
       if (response.ok){
         setMessage(result.message);
+        window.location.href = '/welcome'
       }else{
-        setMessage(result.message || 'Something went wrong');
+        setMessage(result.message || 'Signup failed');
       }
     }catch(error){
       console.error('Error submitting the form:', error);
@@ -191,5 +204,3 @@ const SignUp = () => {
     </>
   );
 };
-
-export default SignUp;
