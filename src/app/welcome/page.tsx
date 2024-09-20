@@ -40,16 +40,16 @@ export default function Welcome() {
     <>
     <Navbar/>
     <div className='bg-[#4B0082]'>
-    <div className="container">
+    <div className="container pt-10">
       <div className='flex justify-between'>
-        <div className="flex flex-col w-[25%] bg-[#7340A4]">
+        <div className="flex flex-col w-[25%] bg-[#D3D3FF] text-[#4B0082] px-1 rounded-lg max-h-[68vh]">
           <div className="flex justify-between items-center underline-divider">
             <h3>Filters</h3>
             <p>Reset All</p>
           </div>
 
           <div className="underline-divider">
-          <div> <h3>Search by</h3></div>
+          <div> <h4>Order by</h4></div>
           <div className="radio-buttons-group">
               <label>
                 <input type="radio" name="sort" value="lowest-rate"/>
@@ -75,13 +75,13 @@ export default function Welcome() {
 
           </div>
           <div className="underline-divider">
-            <div><h3>Hourly Rate</h3></div>
+            <div><h4>Hourly Rate</h4></div>
             
             <PriceSlider/>
           </div>
 
           <div className="underline-divider">
-            <div><h3>Experience (years)</h3></div>
+            <div><h4>Experience (years)</h4></div>
             <div className="radio-buttons-group">
               <label>
                 <input type="radio" name="sort" value="lowest-rate"/>
@@ -105,8 +105,8 @@ export default function Welcome() {
           </div>
 
           </div>
-          <div className="underline-divider">
-            <div><h3>Preferred platform</h3></div>
+          <div>
+            <div><h4>Preferred platform</h4></div>
             <PlatformSelector/>
           </div>
           
@@ -115,14 +115,14 @@ export default function Welcome() {
         <div className="flex flex-col w-[45%]">
           <SearchBar/>
           <div className="flex justify-between items-center">
-          <h3>Search results</h3>
-          <p>50 results found</p>
+          <h4 className='text-white'>Search results</h4>
+          <p className='text-white'>50 results found</p>
           </div>
           <TutorsGrid/>
           
         </div>
 
-        <div className="flex flex-col w-[25%] bg-[#7340A4]">
+        <div className="flex flex-col w-[25%] bg-[#D3D3FF] text-[#4B0082] rounded-lg max-h-[68vh]">
           
         </div>
       </div>

@@ -40,7 +40,7 @@ const TutorsGrid: React.FC = () => {
       ) : error ? (
         <p className="text-red-500">{error}</p>
       ) : (
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4 text-white">
           {tutors.map((tutor, index) => (
             <div key={index} className="p-4 border rounded shadow-md">
               <h2 className="text-lg font-semibold">{tutor.full_name}</h2>
