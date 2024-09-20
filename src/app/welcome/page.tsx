@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-
+import { Navbar } from '@/sections/Navbar';
 export default function Welcome() {
   const [userName, setUserName] = useState('');
 
@@ -30,8 +30,66 @@ export default function Welcome() {
   }, []);
 
   return (
-    <div>
-      <h1>Welcome, {userName}!</h1>
+    <>
+    <Navbar/>
+    <div className="container">
+      <div>
+        <div className="flex flex-col max-w-[25%]">
+          <div className="flex justify-between items-center underline-divider">
+            <h3>Filters</h3>
+            <p>Reset All</p>
+          </div>
+
+          <div className="underline-divider">
+          <div> <h3>Search by</h3></div>
+          <div className="radio-buttons-group">
+              <label>
+                <input type="radio" name="sort" value="lowest-rate"/>
+                Lowest Rate
+              </label>
+
+              <label>
+                <input type="radio" name="sort" value="highest-rate"/>
+                Highest Rate
+              </label>
+
+              <label>
+                <input type="radio" name="sort" value="most-experience"/>
+                Most Experience
+              </label>
+
+              <label>
+                <input type="radio" name="sort" value="a-z"/>
+                A-Z
+              </label>
+          </div>
+
+
+          </div>
+          <div className="underline-divider">
+            <div><h3>Hourly Rate</h3></div>
+
+            
+          </div>
+
+          
+        </div>
+
+        <div className="flex flex-col">
+          
+        </div>
+
+        <div className="flex flex-col">
+          
+        </div>
+      </div>
+        <div>
+          <h1>Welcome, {userName}!</h1>
+        </div>
     </div>
+    
+    </>
+
+
   );
 };

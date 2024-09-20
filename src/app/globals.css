@@ -245,8 +245,39 @@ button, a {
     border-radius: 10px;
   }
 
+  .underline-divider {
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  .underline-divider::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;               /* Thickness of the underline */
+    background-color: black;    /* Color of the underline */
+  }
 
 
+  .radio-buttons-grid {
+    display: grid;            /* Use grid layout */
+    grid-template-columns: repeat(2, 1fr);  /* Two equal columns */
+    gap: 20px;                /* Add space between grid items */
+    margin: 20px 0;           /* Add margin around the grid */
+  }
+  
+  .radio-buttons-grid label {
+    display: inline-flex;            /* Align the radio button and label text */
+    align-items: center;      /* Vertically center-align the radio button with the text */
+  }
+  
+  input[type="radio"] {
+    /* margin-right: 8px; */
+    margin-left: 20px;     /* Add space between radio button and text */
+  }
+  
   
   
 

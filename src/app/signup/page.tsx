@@ -4,11 +4,11 @@ import { useState } from 'react';
 import Script from 'next/script';
 // import { useRouter } from 'next/router';  // Import the useRouter hook from Next.js
 // import { useRouter } from 'next/router';
-
+import {useRouter} from 'next/navigation';
 
 export default function SignUp () {
 
-  // const router = useRouter();
+  const router = useRouter();
 
   // useEffect(() => {
   //   console.log('Router object:', router);
@@ -50,8 +50,8 @@ export default function SignUp () {
       if(response.ok){
         // localStorage.setItem('token', result.token);
         setMessage('Login successful');
-        // router.push('/welcome');
-        window.location.href = '/welcome';
+        router.push('/welcome');
+        // window.location.href = '/welcome';
       } else {
         setMessage(result.message || 'Login Failed');
       }
@@ -79,7 +79,8 @@ export default function SignUp () {
 
       if (response.ok){
         setMessage(result.message);
-        window.location.href = '/welcome'
+        // window.location.href = '/welcome'
+        router.push('/welcome');
       }else{
         setMessage(result.message || 'Signup failed');
       }
