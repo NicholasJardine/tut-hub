@@ -2,12 +2,11 @@
 
 import '@/components/PriceSlider';
 import { useEffect, useState } from 'react';
-import { Navbar } from '@/sections/Navbar';
 import PriceSlider from '@/components/PriceSlider';
 import PlatformSelector from '@/components/PlatformSelector';
 import SearchBar from '@/components/SearchBar';
 import TutorsGrid from '@/components/TutorsGrid';
-
+import { NavTwo } from '@/sections/NavTwo';
 
 export default function Welcome() {
   const [userName, setUserName] = useState('');
@@ -38,7 +37,7 @@ export default function Welcome() {
 
   return (
     <>
-    <Navbar/>
+    <NavTwo/>
     <div className='bg-[#4B0082]'>
     <div className="container pt-10">
       <div className='flex justify-between'>
@@ -115,7 +114,7 @@ export default function Welcome() {
         <div className="flex flex-col w-[45%]">
           <SearchBar/>
           <div className="flex justify-between items-center">
-          <h4 className='text-white'>Search results</h4>
+          <h3 className='text-white'>Search results</h3>
           <p className='text-white'>50 results found</p>
           </div>
           <TutorsGrid/>
