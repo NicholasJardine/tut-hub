@@ -278,6 +278,21 @@ button, a {
     margin-left: 20px;     /* Add space between radio button and text */
   }
   
+  .platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 20px; /* Space between items */
+    margin: 20px 0;
+  }
+  
+  .platforms-grid label {
+    display: flex;
+    align-items: center;
+  }
+  
+  input[type="checkbox"] {
+    margin-right: 8px;
+  }
   
   
 

@@ -1,7 +1,10 @@
 "use client";
 
+import '@/components/PriceSlider';
 import { useEffect, useState } from 'react';
 import { Navbar } from '@/sections/Navbar';
+import PriceSlider from '@/components/PriceSlider';
+import PlatformSelector from '@/components/PlatformSelector';
 export default function Welcome() {
   const [userName, setUserName] = useState('');
 
@@ -68,10 +71,39 @@ export default function Welcome() {
           </div>
           <div className="underline-divider">
             <div><h3>Hourly Rate</h3></div>
-
             
+            <PriceSlider/>
           </div>
 
+          <div className="underline-divider">
+            <div><h3>Experience (years)</h3></div>
+            <div className="radio-buttons-group">
+              <label>
+                <input type="radio" name="sort" value="lowest-rate"/>
+                0-1
+              </label>
+
+              <label>
+                <input type="radio" name="sort" value="highest-rate"/>
+                1-2
+              </label>
+
+              <label>
+                <input type="radio" name="sort" value="most-experience"/>
+                2-3
+              </label>
+
+              <label>
+                <input type="radio" name="sort" value="a-z"/>
+                3-4
+              </label>
+          </div>
+
+          </div>
+          <div className="underline-divider">
+            <div><h3>Preferred platform</h3></div>
+            <PlatformSelector/>
+          </div>
           
         </div>
 
