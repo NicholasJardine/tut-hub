@@ -294,6 +294,13 @@ button, a {
     margin-right: 8px;
   }
   
+
+  .search-container {
+    /* display: flex;
+    flex-direction: column; */
+    /* align-items: center; */
+    margin-top: 8px;
+  }
   
 
 

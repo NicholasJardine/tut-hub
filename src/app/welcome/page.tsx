@@ -5,6 +5,10 @@ import { useEffect, useState } from 'react';
 import { Navbar } from '@/sections/Navbar';
 import PriceSlider from '@/components/PriceSlider';
 import PlatformSelector from '@/components/PlatformSelector';
+import SearchBar from '@/components/SearchBar';
+import TutorsGrid from '@/components/TutorsGrid';
+
+
 export default function Welcome() {
   const [userName, setUserName] = useState('');
 
@@ -35,9 +39,10 @@ export default function Welcome() {
   return (
     <>
     <Navbar/>
+    <div className='bg-[#4B0082]'>
     <div className="container">
-      <div>
-        <div className="flex flex-col max-w-[25%]">
+      <div className='flex justify-between'>
+        <div className="flex flex-col w-[25%] bg-[#7340A4]">
           <div className="flex justify-between items-center underline-divider">
             <h3>Filters</h3>
             <p>Reset All</p>
@@ -107,11 +112,17 @@ export default function Welcome() {
           
         </div>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col w-[45%]">
+          <SearchBar/>
+          <div className="flex justify-between items-center">
+          <h3>Search results</h3>
+          <p>50 results found</p>
+          </div>
+          <TutorsGrid/>
           
         </div>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col w-[25%] bg-[#7340A4]">
           
         </div>
       </div>
@@ -119,7 +130,7 @@ export default function Welcome() {
           <h1>Welcome, {userName}!</h1>
         </div>
     </div>
-    
+    </div>
     </>
 
 
