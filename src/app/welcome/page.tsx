@@ -7,6 +7,7 @@ import PlatformSelector from '@/components/PlatformSelector';
 import SearchBar from '@/components/SearchBar';
 import TutorsGrid from '@/components/TutorsGrid';
 import { NavTwo } from '@/sections/NavTwo';
+import AvatarUpload from '@/sections/AvatarUpload';
 
 export default function Welcome() {
   const [userName, setUserName] = useState('');
@@ -128,6 +129,7 @@ export default function Welcome() {
         <div>
           <h1>Welcome, {userName}!</h1>
         </div>
+        {/* <AvatarUpload/> */}
     </div>
     </div>
     </>

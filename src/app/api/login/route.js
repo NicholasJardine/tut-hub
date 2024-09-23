@@ -26,7 +26,7 @@ export async function POST(req){
         if (isMAtch){
             const token = jwt.sign({userId: user.id, email: user.email}, JWT_SECRET, { expiresIn: '1h'});
             return new Response(JSON.stringify({message: 'Login successful!', token}), {status:200, headers: {
-                'Set-Cookie': `token=${token}; HttpOnly; Secure; Path=/; Max-Age=3600; SameSite=Strict`,
+                'Set-Cookie': `token=${token}; HttpOnly; Secure; Path=/; Max-Age=3600; SameSite=None`,
             }},);
         } else {
             return new Response(JSON.stringify({ message: 'Invalid credentials' }), { status: 401 });     
