@@ -40,7 +40,7 @@ export default function Welcome() {
     <>
     <NavTwo/>
     <div className='bg-[#4B0082]'>
-    <div className="container pt-10">
+    <div className="container mx-auto max-w-[95%] p-4 pt-10">
       <div className='flex justify-between'>
         <div className="flex flex-col w-[25%] bg-[#D3D3FF] text-[#4B0082] px-1 rounded-lg max-h-[68vh]">
           <div className="flex justify-between items-center underline-divider">
