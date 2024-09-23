@@ -57,7 +57,7 @@ const TutorsGrid: React.FC = () => {
                             {/* Tutor Details */}
                             <div className="ml-4">
                                 <h2 className="text-lg font-semibold">{tutor.full_name}</h2>
-                                <p>{tutor.email}</p>
+                                {/* <p>{tutor.email}</p> */}
                             </div>
                         </div>
                     ))}
