@@ -8,6 +8,7 @@ import SearchBar from '@/components/SearchBar';
 import TutorsGrid from '@/components/TutorsGrid';
 import { NavTwo } from '@/sections/NavTwo';
 import AvatarUpload from '@/sections/AvatarUpload';
+import { Footer } from '@/sections/Footer';
 
 export default function Welcome() {
   const [userName, setUserName] = useState('');
@@ -42,7 +43,7 @@ export default function Welcome() {
     <div className='bg-[#4B0082]'>
     <div className="container mx-auto max-w-[95%] p-4 pt-10">
       <div className='flex justify-between'>
-        <div className="flex flex-col w-[25%] bg-[#D3D3FF] text-[#4B0082] px-1 rounded-lg max-h-[68vh]">
+        <div className="flex flex-col w-[25%] bg-[#D3D3FF] text-[#4B0082] px-4 py-2 rounded-lg max-h-[85vh]">
           <div className="flex justify-between items-center underline-divider">
             <h3>Filters</h3>
             <p>Reset All</p>
@@ -50,39 +51,35 @@ export default function Welcome() {
 
           <div className="underline-divider">
           <div> <h4>Order by</h4></div>
-          <div className="radio-buttons-group">
-              <label>
-                <input type="radio" name="sort" value="lowest-rate"/>
-                Lowest Rate
-              </label>
+          <div className="grid grid-cols-2 gap-2">
+  <label className="flex items-center">
+    <input type="radio" name="sort" value="lowest-rate" className="mr-2"/>
+    Lowest Rate
+  </label>
 
-              <label>
-                <input type="radio" name="sort" value="highest-rate"/>
-                Highest Rate
-              </label>
+  <label className="flex items-center">
+    <input type="radio" name="sort" value="highest-rate" className="mr-2 whitespace-nowrap"/>
+    Highest Rate
+  </label>
 
-              <label>
-                <input type="radio" name="sort" value="most-experience"/>
-                Most Experience
-              </label>
+  <label className="flex items-center whitespace-nowrap">
+    <input type="radio" name="sort" value="most-experience" className="mr-2"/>
+    Most Experience
+  </label>
+</div>
 
-              <label>
-                <input type="radio" name="sort" value="a-z"/>
-                A-Z
-              </label>
-          </div>
 
 
           </div>
           <div className="underline-divider">
             <div><h4>Hourly Rate</h4></div>
             
-            <PriceSlider/>
+            <div className='max-w-[95%]'> <PriceSlider/></div>
           </div>
 
           <div className="underline-divider">
             <div><h4>Experience (years)</h4></div>
-            <div className="radio-buttons-group">
+            {/* <div className="radio-buttons-group">
               <label>
                 <input type="radio" name="sort" value="lowest-rate"/>
                 0-1
@@ -102,7 +99,30 @@ export default function Welcome() {
                 <input type="radio" name="sort" value="a-z"/>
                 3-4
               </label>
-          </div>
+          </div> */}
+
+
+<div className="grid grid-cols-2 gap-2">
+  <label className="flex items-center">
+    <input type="radio" name="sort" value="lowest-rate" className="mr-2"/>
+    0-1
+  </label>
+
+  <label className="flex items-center">
+    <input type="radio" name="sort" value="highest-rate" className="mr-2 whitespace-nowrap"/>
+    1-3
+  </label>
+
+  <label className="flex items-center whitespace-nowrap">
+    <input type="radio" name="sort" value="most-experience" className="mr-2"/>
+    3-5
+  </label>
+
+  <label className="flex items-center whitespace-nowrap">
+    <input type="radio" name="sort" value="most-experience" className="mr-2"/>
+    5+
+  </label>
+</div>
 
           </div>
           <div>
@@ -122,16 +142,17 @@ export default function Welcome() {
           
         </div>
 
-        <div className="flex flex-col w-[25%] bg-[#D3D3FF] text-[#4B0082] rounded-lg max-h-[68vh]">
+        <div className="flex flex-col w-[25%] bg-[#D3D3FF] text-[#4B0082] rounded-lg max-h-[85vh]">
           
         </div>
       </div>
-        <div>
+        {/* <div>
           <h1>Welcome, {userName}!</h1>
-        </div>
+        </div> */}
         {/* <AvatarUpload/> */}
     </div>
     </div>
+    {/* <Footer/> */}
     </>
 
 

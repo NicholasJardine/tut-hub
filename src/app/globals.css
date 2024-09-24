@@ -255,14 +255,20 @@ button, a {
     padding-bottom: 10px;
   }
   
+
+  .underline-divider h4{
+    margin-top: 8px;
+    margin-bottom: 4px;
+  }
+  
   .underline-divider::after {
     content: "";
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    height: 2px;               /* Thickness of the underline */
-    background-color: black;    /* Color of the underline */
+    height: 0.5px;               /* Thickness of the underline */
+    background-color: #4B0082;    /* Color of the underline */
   }
 
 
@@ -270,7 +276,7 @@ button, a {
     display: grid;            /* Use grid layout */
     grid-template-columns: repeat(2, 1fr);  /* Two equal columns */
     gap: 20px;                /* Add space between grid items */
-    margin: 20px 0;           /* Add margin around the grid */
+    margin: 20px 0;          
   }
   
   .radio-buttons-grid label {
@@ -279,8 +285,9 @@ button, a {
   }
   
   input[type="radio"] {
-    /* margin-right: 8px; */
-    margin-left: 20px;     /* Add space between radio button and text */
+    margin-right: 16px;
+    /* accent-color: #FA8340;  */
+    /* margin-left: 20px;     Add space between radio button and text */
   }
   
   .platforms-grid {
@@ -307,6 +314,9 @@ button, a {
     margin-top: 8px;
   }
   
+
+  /* Customize the slider track */
+
 
 
 

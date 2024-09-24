@@ -52,7 +52,7 @@ const TutorsGrid: React.FC = () => {
                     {tutors.map((tutor, index) => (
                       <div>
 
-                        <div key={index} className="p-4 border rounded shadow-md flex flex-col">
+                        <div key={index} className="p-4 border rounded-lg shadow-md flex flex-col">
                             {/* Avatar Image */}
 
                             <div className="flex justify-between">
@@ -80,7 +80,7 @@ const TutorsGrid: React.FC = () => {
                               <div className="flex  items-center">
                                 <FontAwesomeIcon icon={faDollar}/>
                                 <p className="ml-1 text-sm">{tutor.hourly_rate}/hr</p>
-                                <p className="ml-12 text-xs ">Experience: {tutor.years_of_experience} years</p>
+                                <p className="ml-12 text-xs lg: whitespace-nowrap">Experience: {tutor.years_of_experience} years</p>
 
                               </div>
                             </div>
