@@ -28,6 +28,26 @@ export default function Welcome() {
   const [selectedTutor, setSelectedTutor] = useState<Tutor | null>(null);
   const [tutors, setTutors] = useState<Tutor[]>([]);   // Add state for all tutors
   const [searchQuery, setSearchQuery] = useState(''); 
+  // Inside the Welcome component
+  const [sortOrder, setSortOrder] = useState<string>(''); // For sorting (rate or experience)
+  const [experienceRange, setExperienceRange] = useState<string>(''); // For experience range
+  // const [hourlyRateRange, setHourlyRateRange] = useState<number[]>([75, 500]); 
+  const [rate, setRate] = useState<number>(75); 
+  
+  const handleSortChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSortOrder(e.target.value);
+  };
+  
+  // Handle experience range selection
+  const handleExperienceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setExperienceRange(e.target.value);
+    console.log("Experience range selected:", e.target.value);  // Log the selected range
+
+  };
+
+  useEffect(() => {
+    console.log("Selected Experience Range:", experienceRange);  // Check if experience range changes
+  }, [experienceRange]);
   
   useEffect(() => {
     const getUserInfo = async () => {
@@ -77,8 +97,29 @@ export default function Welcome() {
   const filteredTutors = tutors.filter(tutor => 
     tutor.full_name.toLowerCase().includes(searchQuery.toLowerCase()) || 
     tutor.specialty.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  )  .filter(tutor => {
+    // Apply experience range filter
+    if (experienceRange === '0-1') return tutor.years_of_experience === 1;
+    if (experienceRange === '1-3') return tutor.years_of_experience >= 1 && tutor.years_of_experience <= 3;
+    if (experienceRange === '3-5') return tutor.years_of_experience >= 3 && tutor.years_of_experience <= 5;
+    if (experienceRange === '5+') return tutor.years_of_experience >= 5;
+    return true; // No filter if none selected
+  })  .sort((a, b) => {
+    // Sorting logic for hourly rate
+    if (sortOrder === 'lowest-rate') {
+      return a.hourly_rate - b.hourly_rate;  // Sort from lowest to highest
+    }
+    if (sortOrder === 'highest-rate') {
+      return b.hourly_rate - a.hourly_rate;  // Sort from highest to lowest
+    }    if (sortOrder === 'most-experience') {
+      return b.years_of_experience - a.years_of_experience;  // Sort from highest to lowest
+    }
+    return 0; // No sorting if no sort order is selected
+  }).filter(tutor => tutor.hourly_rate <= rate); ;;
 
+  useEffect(() => {
+    console.log("Filtered Tutors:", filteredTutors);  // Ensure this logs filtered tutors
+  }, [searchQuery, experienceRange, tutors]);  
 
   return (
     <>
@@ -96,17 +137,17 @@ export default function Welcome() {
           <div> <h4>Order by</h4></div>
           <div className="grid grid-cols-2 gap-2">
   <label className="flex items-center">
-    <input type="radio" name="sort" value="lowest-rate" className="mr-2"/>
+    <input onChange={handleSortChange} type="radio" name="sort" value="lowest-rate" className="mr-2"/>
     Lowest Rate
   </label>
 
   <label className="flex items-center">
-    <input type="radio" name="sort" value="highest-rate" className="mr-2 whitespace-nowrap"/>
+    <input onChange={handleSortChange} type="radio" name="sort" value="highest-rate" className="mr-2 whitespace-nowrap"/>
     Highest Rate
   </label>
 
   <label className="flex items-center whitespace-nowrap">
-    <input type="radio" name="sort" value="most-experience" className="mr-2"/>
+    <input onChange={handleSortChange} type="radio" name="sort" value="most-experience" className="mr-2"/>
     Most Experience
   </label>
 </div>
@@ -117,7 +158,7 @@ export default function Welcome() {
           <div className="underline-divider">
             <div><h4>Hourly Rate</h4></div>
             
-            <div className='max-w-[95%]'> <PriceSlider/></div>
+            <div className='max-w-[95%]'> <PriceSlider onRateChange={setRate}/></div>
           </div>
 
           <div className="underline-divider">
@@ -147,22 +188,22 @@ export default function Welcome() {
 
 <div className="grid grid-cols-2 gap-2">
   <label className="flex items-center">
-    <input type="radio" name="sort" value="lowest-rate" className="mr-2"/>
+    <input onChange={handleExperienceChange} type="radio" name="sort" value="0-1" className="mr-2"/>
     0-1
   </label>
 
   <label className="flex items-center">
-    <input type="radio" name="sort" value="highest-rate" className="mr-2 whitespace-nowrap"/>
+    <input onChange={handleExperienceChange} type="radio" name="sort" value="1-3" className="mr-2 whitespace-nowrap"/>
     1-3
   </label>
 
   <label className="flex items-center whitespace-nowrap">
-    <input type="radio" name="sort" value="most-experience" className="mr-2"/>
+    <input onChange={handleExperienceChange} type="radio" name="sort" value="3-5" className="mr-2"/>
     3-5
   </label>
 
   <label className="flex items-center whitespace-nowrap">
-    <input type="radio" name="sort" value="most-experience" className="mr-2"/>
+    <input onChange={handleExperienceChange} type="radio" name="sort" value="5+" className="mr-2"/>
     5+
   </label>
 </div>

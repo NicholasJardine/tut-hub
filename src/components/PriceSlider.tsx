@@ -35,11 +35,16 @@ import React from "react";
 import Slider from "rc-slider";
 import 'rc-slider/assets/index.css';
 
-const PriceSlider: React.FC = () => {
-  const [rate, setPrice] = useState<number>(75);
+type PriceSliderProps = {
+  onRateChange: (rate: number) => void;  // Callback prop to pass rate
+};
+
+const PriceSlider: React.FC<PriceSliderProps>  = ({onRateChange}) => {
+  const [rate, setRate] = useState<number>(75);
   const handlePriceChange = (value: number | number[]) => {
     if (typeof value === 'number') {
-      setPrice(value);
+      setRate(value);
+      onRateChange(value);
     }
   };
 
