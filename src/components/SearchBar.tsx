@@ -1,9 +1,19 @@
 import React, {useState} from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faHome, faUniversity, faGraduationCap, faSchool, faChalkboardTeacher, faChartLine, faCalendarAlt, faGlobe, faLaptopHouse, faLock, faBookOpen, faUserGraduate, faCalendarCheck, faLightbulb, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 
-const SearchBar: React.FC = () => {
+type SearchBarProps = {
+    onSearch: (query: string) => void;  // Add onSearch prop to pass query to parent
+};
+
+const SearchBar: React.FC<SearchBarProps> = ({onSearch}) => {
     const [query, setQuery] = useState('');
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newQuery = e.target.value;
+        setQuery(newQuery);
+        onSearch(newQuery);  // Pass the query to the parent component
+      };
 
     return(
         <div className='flex justify-between search-container w-full'>
@@ -13,7 +23,7 @@ const SearchBar: React.FC = () => {
             type="text"
             placeholder= 'Search'
             value={query}
-            onChange={(e)=> setQuery(e.target.value)}
+            onChange={handleInputChange}
              />
             </div>
 

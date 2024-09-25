@@ -16,38 +16,39 @@ type Tutor = {
 
 type TutorsGridProps = {
   setSelectedTutor: (tutor: Tutor) => void;  // Accept the function to set selected tutor
+  tutors: Tutor[]; 
 };
 
-const TutorsGrid: React.FC<TutorsGridProps> = ({ setSelectedTutor }) => {  // Make sure to add setSelectedTutor here
-  const [tutors, setTutors] = useState<Tutor[]>([]);
-  const [loading, setLoading] = useState(true);
+const TutorsGrid: React.FC<TutorsGridProps> = ({ setSelectedTutor, tutors }) => {  // Make sure to add setSelectedTutor here
+  // const [tutors, setTutors] = useState<Tutor[]>([]);
+  // const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchTutors = async () => {
-      try {
-        const response = await fetch('/api/alltutors');
-        const data = await response.json();
-        if (response.ok) {
-          setTutors(data.tutors); // Set tutors to the fetched data
-        } else {
-          setError(data.message || 'Error fetching tutors');
-        }
-      } catch (err) {
-        setError('An error occurred while fetching tutors');
-      } finally {
-        setLoading(false); // Turn off loading when done
-      }
-    };
+  // useEffect(() => {
+  //   const fetchTutors = async () => {
+  //     try {
+  //       const response = await fetch('/api/alltutors');
+  //       const data = await response.json();
+  //       if (response.ok) {
+  //         setTutors(data.tutors); // Set tutors to the fetched data
+  //       } else {
+  //         setError(data.message || 'Error fetching tutors');
+  //       }
+  //     } catch (err) {
+  //       setError('An error occurred while fetching tutors');
+  //     } finally {
+  //       setLoading(false); // Turn off loading when done
+  //     }
+  //   };
 
-    fetchTutors();
-  }, []);
+  //   fetchTutors();
+  // }, []);
 
   return (
     <div className="container mx-auto p-4">
-      {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
+      {tutors.length === 0 ? (
+        <p>No tutors available.</p>
+      ) :error ? (
         <p className="text-red-500">{error}</p>
       ) : (
         <div className="grid grid-cols-2 gap-4 text-white">
@@ -93,6 +94,21 @@ const TutorsGrid: React.FC<TutorsGridProps> = ({ setSelectedTutor }) => {  // Ma
 };
 
 export default TutorsGrid;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
