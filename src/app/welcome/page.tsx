@@ -9,9 +9,20 @@ import TutorsGrid from '@/components/TutorsGrid';
 import { NavTwo } from '@/sections/NavTwo';
 import AvatarUpload from '@/sections/AvatarUpload';
 import { Footer } from '@/sections/Footer';
+import Image from 'next/image';
+type Tutor = {
+  full_name: string;
+  email: string;
+  avatar_url: string | null;
+  specialty: string;
+  hourly_rate: number;
+  years_of_experience: number;
+  bio: string;
+};
 
 export default function Welcome() {
   const [userName, setUserName] = useState('');
+  const [selectedTutor, setSelectedTutor] = useState<Tutor | null>(null);
 
   useEffect(() => {
     const getUserInfo = async () => {
@@ -138,12 +149,41 @@ export default function Welcome() {
           <h3 className='text-white'>Search results</h3>
           <p className='text-white'>50 results found</p>
           </div>
-          <TutorsGrid/>
+          <TutorsGrid setSelectedTutor={setSelectedTutor}/>
           
         </div>
 
         <div className="flex flex-col w-[25%] bg-[#D3D3FF] text-[#4B0082] rounded-lg max-h-[85vh]">
-          
+        {selectedTutor ? (
+    <div className="p-4">
+                        <div className='underline-divider'>
+                        <Image
+                      src={selectedTutor.avatar_url || "/dav.jpg"} // Use default if no avatar_url
+                      alt={`Avatar`}
+                      width={68}
+                      height={68}
+                      className="lg:w-16 lg:h-16 rounded" // Rounded corners for the avatar
+                    />
+      <h3>{selectedTutor.full_name}</h3>
+      <p className='text-xs lg:mb-2'>Tutor</p>
+      <p>Specialty: <span className='tag-4'>{selectedTutor.specialty}</span></p>
+
+                        </div>
+
+      {/* <p>Email: {selectedTutor.email}</p> */}
+      <div className="underline-divider">
+
+    
+      <p>Experience: {selectedTutor.years_of_experience} years</p>
+      <h4>Tutor Bio</h4>
+      <p className='text-sm'> {selectedTutor.bio}</p>
+      </div>
+      <h4>Hourly Rate:</h4>
+      <p>${selectedTutor.hourly_rate}/hr</p>
+      <button className="bg-[#4B0082] text-white px-4 py-2 rounded font-medium inline-flex items-center justify-center tracking-tight w-[100%]"> Book Tutor  </button>    </div>
+  ) : (
+    <p>Select a tutor to view their details</p>
+  )}
         </div>
       </div>
         {/* <div>
