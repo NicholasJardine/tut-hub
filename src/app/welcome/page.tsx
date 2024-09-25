@@ -11,7 +11,7 @@ import AvatarUpload from '@/sections/AvatarUpload';
 import { Footer } from '@/sections/Footer';
 import Image from 'next/image';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark, faDollar } from '@fortawesome/free-solid-svg-icons';
+import { faBackward, faBookmark, faDollar, faForward } from '@fortawesome/free-solid-svg-icons';
 
 type Tutor = {
   full_name: string;
@@ -32,8 +32,9 @@ export default function Welcome() {
   const [sortOrder, setSortOrder] = useState<string>(''); // For sorting (rate or experience)
   const [experienceRange, setExperienceRange] = useState<string>(''); // For experience range
   // const [hourlyRateRange, setHourlyRateRange] = useState<number[]>([75, 500]); 
-  const [rate, setRate] = useState<number>(75); 
-  
+  const [rate, setRate] = useState<number>(350); 
+  const [currentPage, setCurrentPage] = useState(1);  // Current page
+  const tutorsPerPage = 6; 
   const handleSortChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSortOrder(e.target.value);
   };
@@ -116,6 +117,11 @@ export default function Welcome() {
     }
     return 0; // No sorting if no sort order is selected
   }).filter(tutor => tutor.hourly_rate <= rate); ;;
+  const indexOfLastTutor = currentPage * tutorsPerPage;
+const indexOfFirstTutor = indexOfLastTutor - tutorsPerPage;
+const currentTutors = filteredTutors.slice(indexOfFirstTutor, indexOfLastTutor);
+const totalPages = Math.ceil(filteredTutors.length / tutorsPerPage); // Total number of pages
+const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   useEffect(() => {
     console.log("Filtered Tutors:", filteredTutors);  // Ensure this logs filtered tutors
@@ -124,10 +130,10 @@ export default function Welcome() {
   return (
     <>
     <NavTwo/>
-    <div className='bg-[#4B0082]'>
+    <div className='bg-[#4B0082] lg:mt-[-10px]'>
     <div className="container mx-auto max-w-[95%] p-4 pt-10">
       <div className='flex justify-between'>
-        <div className="flex flex-col w-[25%] bg-[#D3D3FF] text-[#4B0082] px-4 py-2 rounded-lg max-h-[90vh]">
+        <div className="flex flex-col w-[25%] bg-[#D3D3FF] text-[#4B0082] px-4 py-2 rounded-lg max-h-[82.5vh]">
           <div className="flex justify-between items-center underline-divider">
             <h3>Filters</h3>
             <p>Reset All</p>
@@ -222,11 +228,40 @@ export default function Welcome() {
           <h3 className='text-white'>Search results</h3>
           <p className='text-white'>50 results found</p>
           </div>
-          <TutorsGrid setSelectedTutor={setSelectedTutor} tutors={filteredTutors}/>
-          
+          <TutorsGrid setSelectedTutor={setSelectedTutor} tutors={currentTutors}/>
+          <div className="pagination-controls flex justify-center items-center mt-0 mb:-2">
+  <button
+    onClick={() => setCurrentPage(currentPage - 1)}
+    disabled={currentPage === 1}
+    className="btn text-white ml-2 px-2 py-1 text-xs"
+  >
+    <FontAwesomeIcon icon={faBackward} className='text-white mr-2' />
+    Prev
+  </button>
+  <div className="flex space-x-2">
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index}
+                onClick={() => paginate(index + 1)}
+                className={`btn mr-2 px-2 py-1 text-xs ${currentPage === index + 1 ? 'bg-[#FA8340] text-white' : 'bg-[#D3D3FF]'}`}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
+  <button
+    onClick={() => setCurrentPage(currentPage + 1)}
+    disabled={indexOfLastTutor >= filteredTutors.length}
+    className="btn mr-2 px-2 py-1 text-xs text-white gap-2"
+  >
+    Next
+    <FontAwesomeIcon icon={faForward} className='text-white' />
+
+  </button>
+</div>
         </div>
 
-        <div className="flex flex-col w-[25%] bg-[#D3D3FF] text-[#4B0082] rounded-lg max-h-[90vh]">
+        <div className="flex flex-col w-[25%] bg-[#D3D3FF] text-[#4B0082] rounded-lg max-h-[82.5vh]">
         {selectedTutor ? (
     <div className="p-4">
                         <div className='underline-divider'>

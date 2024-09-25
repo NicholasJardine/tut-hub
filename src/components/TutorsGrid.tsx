@@ -54,7 +54,7 @@ const TutorsGrid: React.FC<TutorsGridProps> = ({ setSelectedTutor, tutors }) => 
         <div className="grid grid-cols-2 gap-4 text-white">
           {tutors.map((tutor, index) => (
             <div key={index} onClick={() => setSelectedTutor(tutor)} className="cursor-pointer"> {/* Add onClick here */}
-              <div className="p-4 border rounded-lg shadow-md flex flex-col">
+              <div className="p-2 border rounded-lg shadow-md flex flex-col">
                 <div className="flex justify-between">
                   <div className="flex">
                     <Image

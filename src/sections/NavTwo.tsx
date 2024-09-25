@@ -18,7 +18,7 @@ import { useRouter} from "next/navigation";
 export const NavTwo = () => {
 
   return (<header className=" bg-[#d3d3ff] sticky top-0 backdrop-blur-sm z-20">
-      <div className="py-5">
+      <div className="py-1">
         <div className="container">
     
         <div className="flex items-center justify-between">
