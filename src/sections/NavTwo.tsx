@@ -28,6 +28,7 @@ export const NavTwo = () => {
           <a href="#"> About</a>
           <a href="#">Careers</a>
           <a href="#">Testimonials</a>
+          <a href="/dashboard">Dashboard</a>
           {/* <a href="#">Updates</a>
           <a href="#">About</a> */}
           <button className="bg-[#4B0082] text-white px-4 py-2 rounded-[20px] font-medium inline-flex items-center justify-center tracking-tight" onClick={handleRedirect}> Edit profile  </button>

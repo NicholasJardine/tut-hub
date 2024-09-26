@@ -226,7 +226,7 @@ const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
           <SearchBar onSearch={setSearchQuery}/>
           <div className="flex justify-between items-center">
           <h3 className='text-white'>Search results</h3>
-          <p className='text-white'>50 results found</p>
+          <p className='text-white'>{currentTutors.length} results found</p>
           </div>
           <TutorsGrid setSelectedTutor={setSelectedTutor} tutors={currentTutors}/>
           <div className="pagination-controls flex justify-center items-center mt-0 mb:-2">
