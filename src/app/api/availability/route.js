@@ -107,3 +107,41 @@ export async function POST(req) {
     return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
   }
 }
+
+export async function GET(req) {
+    // Get the JWT token from the cookies in the request headers
+    const cookieHeader = req.headers.get('cookie');
+    const token = cookieHeader
+      ? cookieHeader.split('; ').find(row => row.startsWith('token=')).split('=')[1]
+      : null;
+  
+    if (!token) {
+      return new Response(JSON.stringify({ message: 'No token provided' }), { status: 401 });
+    }
+  
+    try {
+      // Verify and decode the JWT token (Assuming we will use this token for further authentication)
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const userId = decoded.userId;
+      console.log("Tutor/User ID:", userId);  // Log the tutor/user ID
+
+
+      // Fetch the tutors' details along with profile information using INNER JOIN
+      const result = await pool.query(`
+        SELECT  * FROM availability WHERE tutor_id = $1 AND status = 'unavailable'
+      `, [userId]);
+  
+      if (result.rows.length === 0) {
+        return new Response(JSON.stringify({ message: 'All slots are available' }), { status: 404 });
+      }
+  
+      const availabilities = result.rows;
+      console.log(availabilities)
+      // Return the tutors' data with profile information in the response
+      return new Response(JSON.stringify({ availabilities: availabilities }), { status: 200 });
+    } catch (error) {
+      console.error('Error fetching tutors or invalid token:', error);
+      return new Response(JSON.stringify({ message: 'Invalid token or server error' }), { status: 403 });
+    }
+  }
+
