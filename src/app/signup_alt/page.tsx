@@ -1,29 +1,20 @@
 "use client";
-import { useEffect } from 'react';
-import { useState } from 'react'; 
+import { useEffect, useState } from 'react'; 
 import Script from 'next/script';
-// import { useRouter } from 'next/router';  // Import the useRouter hook from Next.js
-// import { useRouter } from 'next/router';
-import {useRouter} from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
-export default function SignUp () {
-
+export default function SignUpAlt () {
   const router = useRouter();
-
-  // useEffect(() => {
-  //   console.log('Router object:', router);
-  // }, [router]);
 
   const [formData, setFormData] = useState({
     full_name: '',
     email: '',
     user_password: '',
-    role: '',
   });
-  
 
   const [message, setMessage] = useState('');
-  const handleChange = (e:React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -35,7 +26,7 @@ export default function SignUp () {
     e.preventDefault();
 
     try{
-      const response = await fetch('/api/login',{
+      const response = await fetch('/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,10 +40,8 @@ export default function SignUp () {
       const result = await response.json();
 
       if(response.ok){
-        // localStorage.setItem('token', result.token);
         setMessage('Login successful');
         router.push('/welcome');
-        // window.location.href = '/welcome';
       } else {
         setMessage(result.message || 'Login Failed');
       }
@@ -61,7 +50,6 @@ export default function SignUp () {
       setMessage('An error occurred');
     }
   };
-
 
   const handleSubmit = async( e: React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
@@ -80,14 +68,13 @@ export default function SignUp () {
 
       if (response.ok){
         setMessage(result.message);
-        // window.location.href = '/welcome'
         router.push('/welcome');
       }else{
         setMessage(result.message || 'Signup failed');
       }
     }catch(error){
       console.error('Error submitting the form:', error);
-      setMessage('An error occured');
+      setMessage('An error occurred');
     }
   };
 
@@ -95,19 +82,18 @@ export default function SignUp () {
     // Dynamically load the sign_up.css when the SignUp component mounts
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = '/sign_up.css';  // Make sure this path is correct
+    link.href = '/sign_up.css';  // Ensure the correct path
     document.head.appendChild(link);
-
 
     // Cleanup: Remove the sign_up.css when the component unmounts
     return () => {
       document.head.removeChild(link);
     };
-  }, []);  // Empty dependency array ensures this effect only runs once on mount/unmount
+  }, []);
 
   return (
     <>
-      <div className="custom-container" id="custom-container">
+      <div className="custom-container right-panel-active" id="custom-container">
         <div className="form-custom-container sign-up-custom-container">
           <form onSubmit={handleSubmit}>
             <h1>Create Account</h1>
@@ -137,18 +123,10 @@ export default function SignUp () {
               value={formData.user_password}
               onChange={handleChange}
               required/>
-              <div className="infield">
-  <select name="role" value={formData.role || ''} onChange={handleChange} required>
-    <option value="">Select Role</option>
-    <option value="tutor">Tutor</option>
-    <option value="student">Student</option>
-  </select>
-</div>
               <label></label>
             </div>
             <button type='submit'>Sign Up</button>
             {message && <p>{message}</p>}
-
           </form>
         </div>
 
@@ -177,27 +155,28 @@ export default function SignUp () {
               <label></label>
             </div>
             <a href="#" className="forgot">Forgot your password?</a>
-            <button type='submit' >Sign In</button>
+            <button type='submit'>Sign In</button>
             {message && <p>{message}</p>}
           </form>
         </div>
 
         <div className="overlay-custom-container" id="overlayCon">
           <div className="overlay">
-            <div className="overlay-panel overlay-left">
-              <h1 className='whitespace-nowrap'>Welcome Back!</h1>
-              <p>To keep connected with us please login with your personal info</p>
-              <button>Sign In</button>
-            </div>
             <div className="overlay-panel overlay-right">
               <h1>Hello, Friend!</h1>
               <p>Enter your personal details and start your journey with us</p>
-              <button>Sign Up</button>
+              <button className="ghost" id="signUp">Sign Up</button>
+            </div>
+            <div className="overlay-panel overlay-left">
+              <h1 className='whitespace-nowrap'>Hey There!</h1>
+              <p>To keep connected with us please create your account.</p>
+              <button className="ghost" id="signIn">Sign In</button>
             </div>
           </div>
           <button id="overlayBtn"></button>
         </div>
       </div>
+
       <Script id="toggle-script" strategy="lazyOnload">
         {`
           const container = document.getElementById('custom-container');
@@ -208,6 +187,17 @@ export default function SignUp () {
               container.classList.toggle('right-panel-active');
             });
           }
+
+          const signUpButton = document.getElementById('signUp');
+          const signInButton = document.getElementById('signIn');
+          
+          signUpButton.addEventListener('click', () => {
+            container.classList.add('right-panel-active');
+          });
+          
+          signInButton.addEventListener('click', () => {
+            container.classList.remove('right-panel-active');
+          });
         `}
       </Script>
     </>
