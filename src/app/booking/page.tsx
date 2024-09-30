@@ -226,6 +226,12 @@ type Availability = {
   status: string;
 };
 
+  
+
+  
+
+
+
 export default function BookingScreen() {
   const [value, onChange] = useState<Value>(new Date());
   const [bookings, setBookings] = useState<Booking[]>([]);
@@ -234,6 +240,33 @@ export default function BookingScreen() {
 
   const searchParams = useSearchParams();
   const tutorId = searchParams.get('tutorId');  // Get the tutorId from the URL
+  const [isPopupVisible, setPopupVisible] = useState(false);
+
+  const popupStyles = {
+    overlay: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: 'rgba(0, 0, 0, 100)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      zIndex: 1000,
+    },
+    popup: {
+      backgroundColor: 'white',
+      padding: '20px',
+      borderRadius: '5px',
+      textAlign: 'center',
+    },
+  };
+
+  const togglePopup = () => {
+    setPopupVisible(!isPopupVisible);
+  };
+  
 
   const timeSlots = [
     "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM",
@@ -412,7 +445,20 @@ const matchingBooking = bookings.find(
     <div></div>
   ) : hoveredSlot?.day.getTime() === dayObj.fullDate.getTime() && hoveredSlot?.time === time ? (
     <div>
-      <button onClick={() => handleBookingClick(dayObj.fullDate, time)} className="btn btn-primary text-xs opacity-1">Book Slot</button>
+      <button onClick={togglePopup} className="btn btn-primary text-xs opacity-1">Book Slot</button>
+      {isPopupVisible && (
+        <div style={popupStyles.overlay as React.CSSProperties}>
+          <div style={popupStyles.popup as React.CSSProperties}>
+            <h2>Book this tutor?</h2>
+            <p>Click confirm to proceed with your booking</p>
+            <div className="flex justify-between items-center"><button onClick={() => handleBookingClick(dayObj.fullDate, time)} className="btn btn-primary text-xs opacity-1 w-[45%]">Book Slot</button>
+            <button onClick={togglePopup} className="bg-[#4B0082] text-white px-4 py-2  rounded-lg font-medium inline-flex items-center justify-center tracking-tight w-[45%]">
+              Close
+            </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   ) : (
     <div><p className="text-green-700">Free</p></div>
