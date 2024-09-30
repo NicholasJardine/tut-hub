@@ -12,8 +12,11 @@ import { Footer } from '@/sections/Footer';
 import Image from 'next/image';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBackward, faBookmark, faDollar, faForward } from '@fortawesome/free-solid-svg-icons';
+import { useRouter } from 'next/navigation'; // Import useRouter from next/navigation
+
 
 type Tutor = {
+  id: number;
   full_name: string;
   email: string;
   avatar_url: string | null;
@@ -24,6 +27,7 @@ type Tutor = {
 };
 
 export default function Welcome() {
+  const router = useRouter(); // Initialize the useRouter hook
   const [userName, setUserName] = useState('');
   const [selectedTutor, setSelectedTutor] = useState<Tutor | null>(null);
   const [tutors, setTutors] = useState<Tutor[]>([]);   // Add state for all tutors
@@ -39,6 +43,31 @@ export default function Welcome() {
     setSortOrder(e.target.value);
   };
   
+  const popupStyles = {
+    overlay: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      zIndex: 1000,
+    },
+    popup: {
+      backgroundColor: 'white',
+      padding: '20px',
+      borderRadius: '5px',
+      textAlign: 'center',
+    },
+  };
+  
+  const [isPopupVisible, setPopupVisible] = useState(false);
+  const togglePopup = () => {
+    setPopupVisible(!isPopupVisible);
+  };
   // Handle experience range selection
   const handleExperienceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setExperienceRange(e.target.value);
@@ -291,8 +320,25 @@ const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
       <FontAwesomeIcon icon={faDollar} />
       <p className="ml-1 text-sm">{selectedTutor.hourly_rate}/hr</p>
       </div>
-
-      <button className="bg-[#4B0082] text-white px-4 py-2  rounded font-medium inline-flex items-center justify-center tracking-tight w-[100%]"> Book Tutor  </button>    </div>
+      <button
+              onClick={() => router.push(`/booking?tutorId=${selectedTutor.id}`)} // Pass tutorId in the URL
+              className="bg-[#4B0082] text-white px-4 py-2 rounded font-medium inline-flex items-center justify-center tracking-tight w-[100%]"
+            >
+              Book Tutor
+            </button>
+      {/* <button onClick={togglePopup} className="bg-[#4B0082] text-white px-4 py-2  rounded font-medium inline-flex items-center justify-center tracking-tight w-[100%]"> Book Tutor  </button> */}
+      {/* {isPopupVisible && (
+        <div style={popupStyles.overlay as React.CSSProperties}>
+          <div style={popupStyles.popup as React.CSSProperties}>
+            <h2>This is a Popup</h2>
+            <p>Here you can place your message or content.</p>
+            <button onClick={togglePopup} className="btn btn-secondary">
+              Close
+            </button>
+          </div>
+        </div>
+      )} */}
+      </div>
   ) : (
     <p>Select a tutor to view their details</p>
   )}
