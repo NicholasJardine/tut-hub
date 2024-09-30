@@ -183,9 +183,8 @@ export default function Dashboard() {
                 {weekDays.map((dayObj, dayIndex) => {
                   // Match bookings
                   const matchingBooking = bookings.find(
-                    (booking) =>
-                      new Date(booking.booking_date).toISOString().split('T')[0] === formatDateToYMD(dayObj.fullDate) &&
-                      booking.appointment_time === time12ToDbTime[time]
+                    (booking) => formatDateToYMD(new Date(booking.booking_date)) === formatDateToYMD(dayObj.fullDate) &&
+                                 booking.appointment_time === time12ToDbTime[time]
                   );
 
                   const isUnavailable = availability.some(

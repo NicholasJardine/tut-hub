@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark, faDollar } from '@fortawesome/free-solid-svg-icons';
 
 type Tutor = {
-  id: number;
+  tutor_id: number;
   full_name: string;
   email: string;
   avatar_url: string | null;
