@@ -324,7 +324,16 @@ button, a {
   
 
   /* Customize the slider track */
-
+  .scrollable-container {
+    max-height: 500px; /* Adjust height as needed */
+    overflow-y: auto;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr); /* Adjust grid columns based on your needs */
+    gap: 0; /* Adjust gap as needed */
+  }
 
 
 
