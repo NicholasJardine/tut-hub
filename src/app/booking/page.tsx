@@ -287,6 +287,7 @@ import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { useSearchParams } from 'next/navigation';
+import {useRouter} from 'next/navigation';
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -312,10 +313,14 @@ export default function BookingScreen() {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [availability, setAvailability] = useState<Availability[]>([]);
   const [hoveredSlot, setHoveredSlot] = useState<{ day: Date; time: string } | null>(null);
+  const [tutorData, setTutorData] = useState(null); // State for storing tutor data
+  const [hourlyRate, setHourlyRate] = useState<number | null>(null); // State for hourly rate
 
   const searchParams = useSearchParams();
   const tutorId = searchParams.get('tutorId');  // Get the tutorId from the URL
   const [isPopupVisible, setPopupVisible] = useState(false);
+  const router = useRouter();
+
   
   const popupStyles = {
     overlay: {
@@ -445,7 +450,9 @@ export default function BookingScreen() {
       const data = await response.json();
 
       if (response.ok) {
-        togglePopup(); // Close popup after successful booking
+        togglePopup();
+        router.push('/payment')
+         // Close popup after successful booking
       } else {
         console.error('Booking error:', data.message);
         alert("Booking failed: " + data.message);
@@ -455,6 +462,34 @@ export default function BookingScreen() {
       alert("An error occurred during booking.");
     }
   };
+
+  const fetchTutorDetails = async (tutorId: string | null) => {
+    if (tutorId) {
+      try {
+        const res = await fetch(`/api/tutor_by_id?tutorId=${tutorId}`);
+        const data = await res.json();
+        if (res.ok) {
+          setTutorData(data); // Store tutor data
+          setHourlyRate(data.hourly_rate);
+          console.log('Hourly Rate:', data.hourly_rate); // Add this to see if it’s fetched correctly
+
+        //   console.log(data.tutor) // Store hourly rate
+        } else {
+          console.error('Error fetching tutor:', data.message);
+        }
+      } catch (error) {
+        console.error('Error fetching tutor:', error);
+      }
+    }
+  };
+
+
+  useEffect(() => {
+    if (tutorId) {
+      fetchTutorDetails(tutorId);  // <== Correctly call fetchTutorDetails here
+    }
+  }, [tutorId]); 
+
 
   return (
     <div className="container mx-auto p-4">
@@ -525,11 +560,16 @@ export default function BookingScreen() {
                             <div style={popupStyles.overlay as React.CSSProperties}>
                               <div style={popupStyles.popup as React.CSSProperties}>
                                 <h2>Book this tutor?</h2>
-                                <p className='mb-4'>Click confirm to proceed with your booking</p>
+                                <p className='mb-2'>Click confirm to proceed with your booking</p>
+                                <div className="flex flex-col items-start">
+                                <p>Date: {dayObj.fullDate.getDate()}/{dayObj.fullDate.getMonth() + 1}/{dayObj.fullDate.getFullYear()}</p>
+                                <p>Time:{time} </p>
+                                <p>Total Amount: ${hourlyRate}</p>
+                                </div>
                                 <div className="flex justify-between items-center">
                                   <button onClick={() => handleBookingClick(dayObj.fullDate, time)} className="opacity-1 w-[45%] bg-[#FA8340] text-[#4B0082] px-4 py-2 rounded-[20px] font-medium inline-flex items-center justify-center tracking-tight">Confirm</button>
                                   <button onClick={togglePopup} className="bg-[#4B0082] text-white px-4 py-2 rounded-[20px] font-medium inline-flex items-center justify-center tracking-tight w-[45%]">
-                                    Close
+                                    Cancel
                                   </button>
                                 </div>
                               </div>
