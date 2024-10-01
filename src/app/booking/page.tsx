@@ -241,7 +241,6 @@ export default function BookingScreen() {
   const searchParams = useSearchParams();
   const tutorId = searchParams.get('tutorId');  // Get the tutorId from the URL
   const [isPopupVisible, setPopupVisible] = useState(false);
-
   const popupStyles = {
     overlay: {
       position: 'fixed',
@@ -249,7 +248,7 @@ export default function BookingScreen() {
       left: 0,
       right: 0,
       bottom: 0,
-      backgroundColor: 'rgba(0, 0, 0, 100)',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',  // Semi-transparent overlay
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -260,13 +259,14 @@ export default function BookingScreen() {
       padding: '20px',
       borderRadius: '5px',
       textAlign: 'center',
+      opacity: 1,   // Set to 1 for fully opaque
+      zIndex: 1001, // Ensure it is above the overlay
     },
   };
 
   const togglePopup = () => {
-    setPopupVisible(!isPopupVisible);
+    setPopupVisible(prev => !prev);
   };
-  
 
   const timeSlots = [
     "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM",
@@ -369,8 +369,10 @@ export default function BookingScreen() {
       const data = await response.json();
 
       if (response.ok) {
-        alert("Booking successful!");
-        // Optionally, refresh the booking data or mark the slot as booked
+        // alert("Booking successful!");
+        console.log('Before toggle:', isPopupVisible);
+        togglePopup();
+        console.log('After toggle:', isPopupVisible);        // Optionally, refresh the booking data or mark the slot as booked
       } else {
         console.error('Booking error:', data.message);
         alert("Booking failed: " + data.message);
@@ -433,7 +435,7 @@ const matchingBooking = bookings.find(
       : isUnavailable
       ? "bg-gray-300"   // Gray for unavailable slots
       : "bg-green-200"  // Green for free slots
-  } hover:opacity-50`}
+  } hover:opacity-100`}
   onMouseEnter={() => isFreeSlot && setHoveredSlot({ day: dayObj.fullDate, time })}
   onMouseLeave={() => setHoveredSlot(null)}
 >
@@ -451,8 +453,8 @@ const matchingBooking = bookings.find(
           <div style={popupStyles.popup as React.CSSProperties}>
             <h2>Book this tutor?</h2>
             <p>Click confirm to proceed with your booking</p>
-            <div className="flex justify-between items-center"><button onClick={() => handleBookingClick(dayObj.fullDate, time)} className="btn btn-primary text-xs opacity-1 w-[45%]">Book Slot</button>
-            <button onClick={togglePopup} className="bg-[#4B0082] text-white px-4 py-2  rounded-lg font-medium inline-flex items-center justify-center tracking-tight w-[45%]">
+            <div className="flex justify-between items-center"><button onClick={() => handleBookingClick(dayObj.fullDate, time)} className="opacity-1 w-[45%] bg-[#FA8340]  text-[#4B0082] px-4 py-2  rounded-[20px] font-medium inline-flex items-center justify-center tracking-tight">Book Slot</button>
+            <button onClick={togglePopup} className="bg-[#4B0082] text-white px-4 py-2  rounded-[20px] font-medium inline-flex items-center justify-center tracking-tight w-[45%]">
               Close
             </button>
             </div>
