@@ -430,11 +430,48 @@ export default function BookingScreen() {
     // <p className='tag-4 whitespace-nowrap'> booking {studentId} </p>
   };
 
-  const handleBookingClick = async (day: Date, time: string) => {
-    const bookingDate = formatDateToYMD(day);
-    const appointmentTime = time12ToDbTime[time]; // Convert 12-hour time to 24-hour format
+//   const handleBookingClick = async (day: Date, time: string) => {
+//     const bookingDate = formatDateToYMD(day);
+//     const appointmentTime = time12ToDbTime[time]; // Convert 12-hour time to 24-hour format
+
+//     try {
+//       const response = await fetch('/api/student_bookings', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({
+//           tutor_id: tutorId,
+//           booking_date: bookingDate,
+//           appointment_time: appointmentTime,
+//         }),
+//       });
+
+//       const data = await response.json();
+
+//       if (response.ok) {
+//         togglePopup();
+//         router.push('/payment')
+//          // Close popup after successful booking
+//       } else {
+//         console.error('Booking error:', data.message);
+//         alert("Booking failed: " + data.message);
+//       }
+//     } catch (error) {
+//       console.error('Error during booking:', error);
+//       alert("An error occurred during booking.");
+//     }
+//   };
+
+const handleSubmit = async (e: React.FormEvent, day: Date, time: string) => {
+    e.preventDefault();
+  
+    // Format the date and time as needed
+    const bookingDate = formatDateToYMD(day);  // Use 'day' like in handleBookingClick
+    const appointmentTime = time12ToDbTime[time];  // Use 'time' like in handleBookingClick
 
     try {
+      // Step 1: Create booking in the database
       const response = await fetch('/api/student_bookings', {
         method: 'POST',
         headers: {
@@ -444,24 +481,35 @@ export default function BookingScreen() {
           tutor_id: tutorId,
           booking_date: bookingDate,
           appointment_time: appointmentTime,
+          status: 'Pending', // Add initial status
+          price: hourlyRate,
         }),
       });
-
+  
       const data = await response.json();
-
+  
       if (response.ok) {
-        togglePopup();
-        router.push('/payment')
-         // Close popup after successful booking
+        const form = document.getElementById('payfast-form') as HTMLFormElement;
+        // Step 2: Proceed to PayFast
+        console.log('Booking created successfully, proceeding to PayFast');
+        if (form) {
+          form.submit();  // Submit the PayFast form if it exists
+        } else {
+          console.error('Form not found');
+          alert('Error: Payment form not found');
+        }
       } else {
         console.error('Booking error:', data.message);
-        alert("Booking failed: " + data.message);
+        alert('Booking failed: ' + data.message);
       }
     } catch (error) {
       console.error('Error during booking:', error);
-      alert("An error occurred during booking.");
+      alert('An error occurred while creating the booking.');
     }
   };
+  
+
+
 
   const fetchTutorDetails = async (tutorId: string | null) => {
     if (tutorId) {
@@ -560,17 +608,44 @@ export default function BookingScreen() {
                             <div style={popupStyles.overlay as React.CSSProperties}>
                               <div style={popupStyles.popup as React.CSSProperties}>
                                 <h2>Book this tutor?</h2>
-                                <p className='mb-2'>Click confirm to proceed with your booking</p>
-                                <div className="flex flex-col items-start">
+                                <div className="flex flex-col items-center"><div className="flex flex-col items-start mb-4">
                                 <p>Date: {dayObj.fullDate.getDate()}/{dayObj.fullDate.getMonth() + 1}/{dayObj.fullDate.getFullYear()}</p>
                                 <p>Time:{time} </p>
-                                <p>Total Amount: ${hourlyRate}</p>
-                                </div>
-                                <div className="flex justify-between items-center">
+                                <p className='mb-2'>Total Amount: R{hourlyRate}</p>
+                                {/* <div className="flex justify-between items-center max-w-[80%]">
                                   <button onClick={() => handleBookingClick(dayObj.fullDate, time)} className="opacity-1 w-[45%] bg-[#FA8340] text-[#4B0082] px-4 py-2 rounded-[20px] font-medium inline-flex items-center justify-center tracking-tight">Confirm</button>
                                   <button onClick={togglePopup} className="bg-[#4B0082] text-white px-4 py-2 rounded-[20px] font-medium inline-flex items-center justify-center tracking-tight w-[45%]">
                                     Cancel
                                   </button>
+                                </div> */}
+
+                                </div>
+                                {/* <p className='mb-2'>Click confirm to proceed with your booking</p> */}
+
+                                <div className="flex justify-between items-center max-w-[100%]">
+                                  {/* <button onClick={() => handleBookingClick(dayObj.fullDate, time)} className="opacity-1 w-[45%] bg-[#FA8340] text-[#4B0082] px-4 py-2 rounded-[20px] font-medium inline-flex items-center justify-center tracking-tight">Continue</button> */}
+                                  <button onClick={togglePopup} className="bg-[#4B0082] text-white px-4 py-2 rounded-[20px] font-medium inline-flex items-center justify-center tracking-tight w-[45%]">
+                                    Cancel
+                                  </button>
+                                  <form id="payfast-form" action="https://sandbox.payfast.co.za/eng/process" method="POST">
+                                  <input type="hidden" name="merchant_id" value={process.env.NEXT_PUBLIC_PAYFAST_MERCHANT_ID} />
+                                  <input type="hidden" name="merchant_key" value={process.env.NEXT_PUBLIC_PAYFAST_MERCHANT_KEY} />
+                                  <input type="hidden" name="amount" value={hourlyRate !== null ? hourlyRate : ''} />
+                                  <input type="hidden" name="item_name" value={`Tutoring Session on ${selectedDate}`} />
+                                  <input type="hidden" name="return_url" value={process.env.NEXT_PUBLIC_PAYFAST_RETURN_URL} />
+                                  <input type="hidden" name="cancel_url" value={process.env.NEXT_PUBLIC_PAYFAST_CANCEL_URL} />
+                                  <input type="hidden" name="notify_url" value={process.env.NEXT_PUBLIC_PAYFAST_NOTIFY_URL} />
+
+  {/* Additional fields */}
+                                 <input type="hidden" name="custom_str1" value={tutorId !==null ? tutorId : ''} />
+                                 <input type="hidden" name="custom_str2" value={time} />
+
+  {/* Continue button */}
+                                <button type="button" className="opacity-1 w-[80%] bg-[#FA8340] text-[#4B0082] px-4 py-2 rounded-[20px] font-medium inline-flex items-center justify-center tracking-tight" onClick={(e) => handleSubmit(e, dayObj.fullDate, time)}>
+                                  Continue
+                                </button>  
+                              </form>
+                                </div>
                                 </div>
                               </div>
                             </div>
