@@ -56,13 +56,23 @@
 import { Pool } from 'pg';
 import jwt from 'jsonwebtoken'; // Make sure to import jwt
 import { NextResponse } from 'next/server'; // Use Next.js Response
+import path from 'path';
+import fs from 'fs';
+const certPath = path.resolve('src/assets/af-south-1-bundle.pem');
+console.log('Resolved path to the certificate:', certPath); 
+
+const sslConfig = {
+  rejectUnauthorized: true,
+  ca: fs.readFileSync(certPath).toString(),
+};
 
 const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'tuthub',
-  password: 'Milkyway147!',
-  port: 5432,
+  user: process.env.PG_USER,
+  host: process.env.PG_HOST,
+  database: process.env.PG_DATABASE,
+  password: process.env.PG_PASSWORD,
+  port: process.env.PG_PORT,
+  ssl:sslConfig,
 });
 
 // Handle POST requests

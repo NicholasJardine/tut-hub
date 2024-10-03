@@ -635,6 +635,7 @@ const handleSubmit = async (e: React.FormEvent, day: Date, time: string) => {
                                   <input type="hidden" name="return_url" value={process.env.NEXT_PUBLIC_PAYFAST_RETURN_URL} />
                                   <input type="hidden" name="cancel_url" value={process.env.NEXT_PUBLIC_PAYFAST_CANCEL_URL} />
                                   <input type="hidden" name="notify_url" value={process.env.NEXT_PUBLIC_PAYFAST_NOTIFY_URL} />
+                                  <input type="hidden" name="payment_method"/> 
 
   {/* Additional fields */}
                                  <input type="hidden" name="custom_str1" value={tutorId !==null ? tutorId : ''} />

@@ -52,12 +52,28 @@ import bcrypt from 'bcryptjs';
 import { Pool } from 'pg';
 import jwt from 'jsonwebtoken';  // Import the jsonwebtoken package
 
+import path from 'path';
+import fs from 'fs';
+const certPath = path.resolve('src/assets/af-south-1-bundle.pem');
+console.log('Resolved path to the certificate:', certPath); 
+
+const sslConfig = {
+  rejectUnauthorized: true,
+  ca: fs.readFileSync(certPath).toString(),
+};
+
 const pool = new Pool({
-    user: 'postgres', // PostgreSQL username
-    host: 'localhost',     // Database host (e.g., localhost)
-    database: 'tuthub',   // Your database name
-    password: 'Milkyway147!', // PostgreSQL password
-    port: 5432,            // PostgreSQL port (default is 5432)
+    // user: 'postgres', // PostgreSQL username
+    // host: 'localhost',     // Database host (e.g., localhost)
+    // database: 'tuthub',   // Your database name
+    // password: 'Milkyway147!', // PostgreSQL password
+    // port: 5432,            // PostgreSQL port (default is 5432)
+    user: process.env.PG_USER,
+    host: process.env.PG_HOST,
+    database: process.env.PG_DATABASE,
+    password: process.env.PG_PASSWORD,
+    port: process.env.PG_PORT,
+    ssl: sslConfig,
 });
 
 export async function GET(req) {
