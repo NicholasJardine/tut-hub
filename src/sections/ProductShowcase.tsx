@@ -45,7 +45,7 @@ export const Offerings = () => {
       </div>
     <h2 className='section-title mt-5 text-[#4B0082]'>What we offer</h2>
     <p className='section-description mt-5'>
-    Tut-hub provides comprehensive tutoring services at both university and high school levels, with flexible options for one-on-one or group sessions, ensuring tailored support for every student's unique needs.</p>
+    {`Tut-hub provides comprehensive tutoring services at both university and high school levels, with flexible options for one-on-one or group sessions, ensuring tailored support for every student's unique needs.`}</p>
     </div>
     {/* <div className="relative">
     <Image src={productImage} alt='product image' className='mt-10'></Image>

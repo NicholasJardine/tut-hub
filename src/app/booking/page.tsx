@@ -283,7 +283,7 @@
 
 
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { useSearchParams } from 'next/navigation';
@@ -540,6 +540,7 @@ const handleSubmit = async (e: React.FormEvent, day: Date, time: string) => {
 
 
   return (
+    <Suspense fallback={<div>LOADING...</div>}>
     <div className="container mx-auto p-4">
       <h1 className="text-xl font-semibold mb-4">Tutor Booking Screen</h1>
       <div className="flex justify-between space-x-4">
@@ -664,5 +665,6 @@ const handleSubmit = async (e: React.FormEvent, day: Date, time: string) => {
         </div>
       </div>
     </div>
+  </Suspense>
   );
 }

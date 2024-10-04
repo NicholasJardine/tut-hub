@@ -49,9 +49,9 @@ const TutorDetails: React.FC = () => {
       ) : (
         <div className="text-white">
                     {tutors.map((tutor, index) => (
-                      <div>
+                      <div key={index}>
 
-                        <div key={index} className="p-4 border rounded-lg shadow-md flex flex-col">
+                        <div className="p-4 border rounded-lg shadow-md flex flex-col">
                             {/* Avatar Image */}
 
                             <div className="flex justify-between">

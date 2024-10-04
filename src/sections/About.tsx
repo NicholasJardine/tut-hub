@@ -15,10 +15,10 @@ const About = () => {
           <div className="flex flex-col flex-1 text-left items-start space-y-6"> {/* Added space between elements */}
             <h1 className="text-5xl font-bold mb-4 section-title text-left text-[#4B0082]">Connecting students with the perfect tutor</h1>
             <p className="text-lg mb-6">
-              At Tut-hub, we believe that the right connection between students and tutors can unlock true academic potential.
+              {`At Tut-hub, we believe that the right connection between students and tutors can unlock true academic potential.
               Our platform makes personalized
               education accessible and convenient. Whether you're a student looking for tailored support or a tutor eager to grow your
-              business, Tut-hub bridges the gap to create meaningful learning experiences.
+              business, Tut-hub bridges the gap to create meaningful learning experiences.`}
             </p>
             <div className="flex gap-12"> {/* Added more space between the two columns */}
                 <div>

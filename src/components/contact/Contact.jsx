@@ -47,8 +47,8 @@ const ContactPage = () => {
           Reach us here <Image src={message_icon.src} width={120} height={120} className="ml-2 w-[35px]" alt="Message Icon" />
         </h3>
         <p className="max-w-[450px] leading-[1.3] mb-4 mt-1">
-          You're welcome to contact us using the details provided below. We're here to assist with any inquiries or support you may need. Feel free to reach out, and we'll respond as soon as possible!
-        </p>
+{          `You're welcome to contact us using the details provided below. We're here to assist with any inquiries or support you may need. Feel free to reach out, and we'll respond as soon as possible!`
+}        </p>
         <ul>
           <li className="flex items-center my-5">
             <Image src={mail_icon.src} width={120} height={120} className="mr-2 w-[25px]" alt="Mail Icon" />
